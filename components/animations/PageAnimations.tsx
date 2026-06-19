@@ -83,17 +83,25 @@ export function PageAnimations() {
         });
       });
 
-      // ── Stagger (filhos do container) ────────────────────────────────
+      // ── Stagger (ScrollTrigger individual por filho) ─────────────────
+      // Cada filho tem o próprio trigger — evita reverter o stagger antes
+      // de completar quando o container sai da viewport durante rolagem rápida.
       gsap.utils.toArray<HTMLElement>(".gsap-stagger").forEach((container) => {
         const kids = Array.from(container.children) as HTMLElement[];
         if (!kids.length) return;
-        gsap.from(kids, {
-          y: 45,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.09,
-          ease: "power3.out",
-          scrollTrigger: { trigger: container, start: "top 85%" },
+        kids.forEach((kid, i) => {
+          gsap.from(kid, {
+            y: 40,
+            opacity: 0,
+            duration: 0.6,
+            delay: (i % 4) * 0.07,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: kid,
+              start: "top 92%",
+              once: true,
+            },
+          });
         });
       });
 
