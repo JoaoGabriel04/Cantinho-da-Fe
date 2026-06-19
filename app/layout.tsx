@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,8 +16,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Cantinho Religioso — Artigos Religiosos",
-    template: "%s | Cantinho Religioso",
+    default: "Cantinho da Fé — Artigos Religiosos",
+    template: "%s | Cantinho da Fé",
   },
   description:
     "Catálogo de artigos religiosos com terços, imagens, bíblias, decoração e muito mais. Compre pelo WhatsApp com atendimento humanizado.",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    siteName: "Cantinho Religioso",
+    siteName: "Cantinho da Fé",
   },
 };
 

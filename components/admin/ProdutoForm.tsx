@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -120,7 +120,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
     router.refresh();
   }
 
-  const inputCls = "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[var(--color-ouro)] focus:ring-2 focus:ring-[var(--color-ouro)]/20 transition-all";
+  const inputCls = "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ouro focus:ring-2 focus:ring-ouro/20 transition-all";
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
@@ -131,10 +131,10 @@ export function ProdutoForm({ categorias, produto }: Props) {
       )}
 
       <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-5">
-        <h2 className="font-semibold text-[var(--color-texto)]">Informações básicas</h2>
+        <h2 className="font-semibold text-texto">Informações básicas</h2>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--color-texto)] mb-1.5">Nome *</label>
+          <label className="block text-sm font-medium text-texto mb-1.5">Nome *</label>
           <input
             type="text"
             value={nome}
@@ -146,7 +146,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--color-texto)] mb-1.5">Descrição *</label>
+          <label className="block text-sm font-medium text-texto mb-1.5">Descrição *</label>
           <textarea
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
@@ -159,7 +159,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-[var(--color-texto)] mb-1.5">Preço (R$) *</label>
+            <label className="block text-sm font-medium text-texto mb-1.5">Preço (R$) *</label>
             <input
               type="number"
               value={preco}
@@ -172,7 +172,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[var(--color-texto)] mb-1.5">Categoria *</label>
+            <label className="block text-sm font-medium text-texto mb-1.5">Categoria *</label>
             <select
               value={categoriaId}
               onChange={(e) => setCategoriaId(e.target.value)}
@@ -189,13 +189,13 @@ export function ProdutoForm({ categorias, produto }: Props) {
 
       {/* Imagens */}
       <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-4">
-        <h2 className="font-semibold text-[var(--color-texto)]">Imagens</h2>
+        <h2 className="font-semibold text-texto">Imagens</h2>
 
-        <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-8 cursor-pointer hover:border-[var(--color-ouro)] hover:bg-[var(--color-bege)] transition-all">
+        <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-8 cursor-pointer hover:border-ouro hover:bg-bege transition-all">
           <input type="file" multiple accept="image/*" className="hidden" onChange={handleUploadImagens} />
           {enviandoImagens ? (
-            <div className="flex items-center gap-2 text-[var(--color-texto-suave)]">
-              <div className="w-5 h-5 border-2 border-[var(--color-ouro)] border-t-transparent rounded-full animate-spin" />
+            <div className="flex items-center gap-2 text-texto-suave">
+              <div className="w-5 h-5 border-2 border-ouro border-t-transparent rounded-full animate-spin" />
               Enviando imagens...
             </div>
           ) : (
@@ -203,7 +203,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
               <svg className="w-10 h-10 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <p className="text-sm text-[var(--color-texto-suave)]">Clique para selecionar imagens</p>
+              <p className="text-sm text-texto-suave">Clique para selecionar imagens</p>
               <p className="text-xs text-gray-400 mt-1">PNG, JPG ou WEBP</p>
             </>
           )}
@@ -222,7 +222,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
                   ×
                 </button>
                 {i === 0 && (
-                  <span className="absolute bottom-2 left-2 bg-[var(--color-ouro)] text-white text-xs px-2 py-0.5 rounded-full">
+                  <span className="absolute bottom-2 left-2 bg-ouro text-white text-xs px-2 py-0.5 rounded-full">
                     Principal
                   </span>
                 )}
@@ -234,10 +234,10 @@ export function ProdutoForm({ categorias, produto }: Props) {
 
       {/* Configurações */}
       <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-4">
-        <h2 className="font-semibold text-[var(--color-texto)]">Configurações</h2>
+        <h2 className="font-semibold text-texto">Configurações</h2>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--color-texto)] mb-2">Status de estoque</label>
+          <label className="block text-sm font-medium text-texto mb-2">Status de estoque</label>
           <div className="flex gap-3">
             {(["DISPONIVEL", "ESGOTADO"] as const).map((s) => (
               <button
@@ -264,18 +264,18 @@ export function ProdutoForm({ categorias, produto }: Props) {
               type="checkbox"
               checked={destaque}
               onChange={(e) => setDestaque(e.target.checked)}
-              className="w-4 h-4 accent-[var(--color-ouro)]"
+              className="w-4 h-4 accent-ouro"
             />
-            <span className="text-sm text-[var(--color-texto)]">Destaque na home</span>
+            <span className="text-sm text-texto">Destaque na home</span>
           </label>
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
               checked={ativo}
               onChange={(e) => setAtivo(e.target.checked)}
-              className="w-4 h-4 accent-[var(--color-ouro)]"
+              className="w-4 h-4 accent-ouro"
             />
-            <span className="text-sm text-[var(--color-texto)]">Produto ativo (visível)</span>
+            <span className="text-sm text-texto">Produto ativo (visível)</span>
           </label>
         </div>
       </div>
@@ -285,14 +285,14 @@ export function ProdutoForm({ categorias, produto }: Props) {
         <button
           type="submit"
           disabled={salvando}
-          className="flex-1 bg-[var(--color-ouro)] hover:bg-[var(--color-terroso)] text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-60"
+          className="flex-1 bg-ouro hover:bg-terroso text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-60"
         >
           {salvando ? "Salvando..." : editando ? "Salvar alterações" : "Criar produto"}
         </button>
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-5 py-3 border border-gray-200 rounded-xl text-sm text-[var(--color-texto-suave)] hover:bg-gray-50 transition-colors"
+          className="px-5 py-3 border border-gray-200 rounded-xl text-sm text-texto-suave hover:bg-gray-50 transition-colors"
         >
           Cancelar
         </button>

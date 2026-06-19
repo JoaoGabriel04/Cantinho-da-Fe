@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -80,7 +80,7 @@ export function CategoriaForm({ categoria }: Props) {
     router.refresh();
   }
 
-  const inputCls = "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[var(--color-ouro)] focus:ring-2 focus:ring-[var(--color-ouro)]/20 transition-all";
+  const inputCls = "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-ouro focus:ring-2 focus:ring-ouro/20 transition-all";
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md space-y-6">
@@ -92,7 +92,7 @@ export function CategoriaForm({ categoria }: Props) {
 
       <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-5">
         <div>
-          <label className="block text-sm font-medium text-[var(--color-texto)] mb-1.5">
+          <label className="block text-sm font-medium text-texto mb-1.5">
             Nome da categoria *
           </label>
           <input
@@ -106,7 +106,7 @@ export function CategoriaForm({ categoria }: Props) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[var(--color-texto)] mb-2">
+          <label className="block text-sm font-medium text-texto mb-2">
             Imagem de capa (opcional)
           </label>
 
@@ -122,15 +122,15 @@ export function CategoriaForm({ categoria }: Props) {
               </button>
             </div>
           ) : (
-            <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-6 cursor-pointer hover:border-[var(--color-ouro)] hover:bg-[var(--color-bege)] transition-all">
+            <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-6 cursor-pointer hover:border-ouro hover:bg-bege transition-all">
               <input type="file" accept="image/*" className="hidden" onChange={handleUploadImagem} />
               {enviandoImagem ? (
-                <div className="flex items-center gap-2 text-[var(--color-texto-suave)]">
-                  <div className="w-4 h-4 border-2 border-[var(--color-ouro)] border-t-transparent rounded-full animate-spin" />
+                <div className="flex items-center gap-2 text-texto-suave">
+                  <div className="w-4 h-4 border-2 border-ouro border-t-transparent rounded-full animate-spin" />
                   Enviando...
                 </div>
               ) : (
-                <p className="text-sm text-[var(--color-texto-suave)]">Clique para selecionar imagem</p>
+                <p className="text-sm text-texto-suave">Clique para selecionar imagem</p>
               )}
             </label>
           )}
@@ -141,14 +141,14 @@ export function CategoriaForm({ categoria }: Props) {
         <button
           type="submit"
           disabled={salvando}
-          className="flex-1 bg-[var(--color-ouro)] hover:bg-[var(--color-terroso)] text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-60"
+          className="flex-1 bg-ouro hover:bg-terroso text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-60"
         >
           {salvando ? "Salvando..." : editando ? "Salvar" : "Criar categoria"}
         </button>
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-5 py-3 border border-gray-200 rounded-xl text-sm text-[var(--color-texto-suave)] hover:bg-gray-50 transition-colors"
+          className="px-5 py-3 border border-gray-200 rounded-xl text-sm text-texto-suave hover:bg-gray-50 transition-colors"
         >
           Cancelar
         </button>

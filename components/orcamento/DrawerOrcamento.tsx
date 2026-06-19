@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { X, Trash2, Minus, Plus, MessageCircle, FileText } from "lucide-react";
@@ -41,21 +41,21 @@ export function DrawerOrcamento() {
       {/* Drawer */}
       <aside
         aria-label="Lista de orçamento"
-        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-[var(--color-creme)] z-50 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-creme z-50 shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
           drawerAberto ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--color-ouro)]/20 flex-shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-ouro/20 flex-shrink-0">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-[var(--color-ouro)]" />
-            <h2 className="font-serif text-xl text-[var(--color-texto)]">
+            <FileText className="w-5 h-5 text-ouro" />
+            <h2 className="font-serif text-xl text-texto">
               Lista de Orçamento
             </h2>
           </div>
           <button
             onClick={fecharDrawer}
-            className="p-2 rounded-lg hover:bg-[var(--color-bege)] text-[var(--color-texto-suave)] transition-colors"
+            className="p-2 rounded-lg hover:bg-bege text-texto-suave transition-colors"
             aria-label="Fechar"
           >
             <X className="w-5 h-5" />
@@ -65,14 +65,14 @@ export function DrawerOrcamento() {
         {/* Itens */}
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3">
           {itens.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-[var(--color-texto-suave)] py-16 gap-3">
+            <div className="flex flex-col items-center justify-center h-full text-texto-suave py-16 gap-3">
               <FileText className="w-12 h-12 opacity-30" />
               <p className="text-sm">Nenhum item adicionado ainda.</p>
             </div>
           ) : (
             itens.map((item) => (
               <div key={item.produtoId} className="flex gap-3 bg-white rounded-xl p-3 shadow-sm">
-                <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--color-bege)]">
+                <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-bege">
                   {item.imagemUrl && (
                     <Image
                       src={item.imagemUrl}
@@ -83,16 +83,16 @@ export function DrawerOrcamento() {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-[var(--color-texto)] truncate">
+                  <p className="text-sm font-medium text-texto truncate">
                     {item.nome}
                   </p>
-                  <p className="text-xs text-[var(--color-texto-suave)] mb-2">
+                  <p className="text-xs text-texto-suave mb-2">
                     #{item.codigo} · R$ {item.preco.toFixed(2).replace(".", ",")}
                   </p>
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => atualizarQuantidade(item.produtoId, item.quantidade - 1)}
-                      className="w-7 h-7 rounded-full border border-[var(--color-ouro)]/40 flex items-center justify-center text-[var(--color-ouro)] hover:bg-[var(--color-ouro)] hover:text-white transition-colors"
+                      className="w-7 h-7 rounded-full border border-ouro/40 flex items-center justify-center text-ouro hover:bg-ouro hover:text-white transition-colors"
                       aria-label="Diminuir"
                     >
                       <Minus className="w-3 h-3" />
@@ -102,7 +102,7 @@ export function DrawerOrcamento() {
                     </span>
                     <button
                       onClick={() => atualizarQuantidade(item.produtoId, item.quantidade + 1)}
-                      className="w-7 h-7 rounded-full border border-[var(--color-ouro)]/40 flex items-center justify-center text-[var(--color-ouro)] hover:bg-[var(--color-ouro)] hover:text-white transition-colors"
+                      className="w-7 h-7 rounded-full border border-ouro/40 flex items-center justify-center text-ouro hover:bg-ouro hover:text-white transition-colors"
                       aria-label="Aumentar"
                     >
                       <Plus className="w-3 h-3" />
@@ -123,10 +123,10 @@ export function DrawerOrcamento() {
 
         {/* Footer */}
         {itens.length > 0 && (
-          <div className="px-5 py-4 border-t border-[var(--color-ouro)]/20 flex-shrink-0 space-y-3">
+          <div className="px-5 py-4 border-t border-ouro/20 flex-shrink-0 space-y-3">
             <div className="flex justify-between text-sm">
-              <span className="text-[var(--color-texto-suave)]">Total estimado:</span>
-              <span className="font-bold text-[var(--color-texto)]">
+              <span className="text-texto-suave">Total estimado:</span>
+              <span className="font-bold text-texto">
                 R$ {totalPreco.toFixed(2).replace(".", ",")}
               </span>
             </div>
@@ -139,7 +139,7 @@ export function DrawerOrcamento() {
             </button>
             <button
               onClick={limparOrcamento}
-              className="w-full text-sm text-[var(--color-texto-suave)] hover:text-red-500 transition-colors py-1"
+              className="w-full text-sm text-texto-suave hover:text-red-500 transition-colors py-1"
             >
               Limpar lista
             </button>

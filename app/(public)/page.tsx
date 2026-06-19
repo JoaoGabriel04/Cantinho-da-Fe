@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { Search, ClipboardList, MessageCircle, Tag, BookOpen, Layers, Sparkles, Gift, ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/prisma";
@@ -61,28 +61,28 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-marfim)] via-[var(--color-bege)] to-[var(--color-creme)] py-24 md:py-36">
+      <section className="relative overflow-hidden bg-linear-to-br from-marfim via-bege to-creme py-24 md:py-36">
         <div className="absolute inset-0 opacity-5 select-none pointer-events-none">
           <div className="absolute top-10 left-10 text-9xl">✦</div>
           <div className="absolute bottom-10 right-10 text-7xl">✦</div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] leading-none">✦</div>
         </div>
         <div className="relative max-w-4xl mx-auto text-center px-4">
-          <p className="text-[var(--color-ouro)] font-medium tracking-widest uppercase text-sm mb-4">
+          <p className="text-ouro font-medium tracking-widest uppercase text-sm mb-4">
             ✦ Com fé e carinho ✦
           </p>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[var(--color-texto)] mb-6 leading-tight">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-texto mb-6 leading-tight">
             Artigos Religiosos para
             <br />
             <span className="text-gradient-ouro">nutrir a sua fé</span>
           </h1>
-          <p className="text-[var(--color-texto-suave)] text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-texto-suave text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             Terços, bíblias, imagens sacras, decoração e muito mais. Escolha com calma e finalize sua compra pelo WhatsApp com atendimento humanizado.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/produtos"
-              className="inline-flex items-center gap-2 bg-[var(--color-ouro)] hover:bg-[var(--color-terroso)] text-white px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 shadow-lg shadow-[var(--color-ouro)]/20"
+              className="inline-flex items-center gap-2 bg-ouro hover:bg-terroso text-white px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 shadow-lg shadow-ouro/20"
             >
               Ver Catálogo
               <ArrowRight className="w-5 h-5" />
@@ -91,7 +91,7 @@ export default async function HomePage() {
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMERO}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white hover:bg-[var(--color-bege)] text-[var(--color-texto)] px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 border border-[var(--color-ouro)]/30 shadow-sm"
+              className="inline-flex items-center gap-2 bg-white hover:bg-bege text-texto px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 border border-ouro/30 shadow-sm"
             >
               <WhatsAppIcon />
               Falar no WhatsApp
@@ -104,10 +104,10 @@ export default async function HomePage() {
       {categorias.length > 0 && (
         <section className="py-20 px-4 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl text-[var(--color-texto)] mb-3">
+            <h2 className="font-serif text-3xl md:text-4xl text-texto mb-3">
               Explore por Categoria
             </h2>
-            <p className="text-[var(--color-texto-suave)]">
+            <p className="text-texto-suave">
               Encontre exatamente o que procura
             </p>
           </div>
@@ -118,16 +118,16 @@ export default async function HomePage() {
                 <Link
                   key={cat.id}
                   href={`/produtos?categoria=${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-[var(--color-ouro)]/10 hover:border-[var(--color-ouro)]/40 hover:shadow-md transition-all duration-200 hover-lift"
+                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-ouro/10 hover:border-ouro/40 hover:shadow-md transition-all duration-200 hover-lift"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[var(--color-bege)] flex items-center justify-center overflow-hidden relative">
+                  <div className="w-16 h-16 rounded-full bg-bege flex items-center justify-center overflow-hidden relative">
                     {cat.imagemUrl ? (
                       <Image src={cat.imagemUrl} alt={cat.nome} fill className="object-cover" />
                     ) : (
-                      <Icone className="w-7 h-7 text-[var(--color-ouro)]" />
+                      <Icone className="w-7 h-7 text-ouro" />
                     )}
                   </div>
-                  <span className="text-sm font-medium text-[var(--color-texto)] text-center group-hover:text-[var(--color-ouro)] transition-colors">
+                  <span className="text-sm font-medium text-texto text-center group-hover:text-ouro transition-colors">
                     {cat.nome}
                   </span>
                 </Link>
@@ -139,13 +139,13 @@ export default async function HomePage() {
 
       {/* Destaques */}
       {destaques.length > 0 && (
-        <section className="py-20 px-4 bg-[var(--color-bege)]">
+        <section className="py-20 px-4 bg-bege">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl text-[var(--color-texto)] mb-3">
+              <h2 className="font-serif text-3xl md:text-4xl text-texto mb-3">
                 Mais Procurados
               </h2>
-              <p className="text-[var(--color-texto-suave)]">
+              <p className="text-texto-suave">
                 Os produtos favoritos dos nossos clientes
               </p>
             </div>
@@ -164,7 +164,7 @@ export default async function HomePage() {
             <div className="text-center mt-10">
               <Link
                 href="/produtos"
-                className="inline-flex items-center gap-2 border-2 border-[var(--color-ouro)] text-[var(--color-ouro)] hover:bg-[var(--color-ouro)] hover:text-white px-8 py-3 rounded-full font-medium transition-colors duration-200"
+                className="inline-flex items-center gap-2 border-2 border-ouro text-ouro hover:bg-ouro hover:text-white px-8 py-3 rounded-full font-medium transition-colors duration-200"
               >
                 Ver catálogo completo
                 <ArrowRight className="w-4 h-4" />
@@ -177,23 +177,23 @@ export default async function HomePage() {
       {/* Como funciona */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-[var(--color-texto)] mb-3">
+          <h2 className="font-serif text-3xl md:text-4xl text-texto mb-3">
             Como Funciona
           </h2>
-          <p className="text-[var(--color-texto-suave)] mb-14">
+          <p className="text-texto-suave mb-14">
             Simples, rápido e com atendimento humano
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {passos.map((passo) => (
               <div key={passo.num} className="flex flex-col items-center gap-4 p-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--color-ouro)] to-[var(--color-terroso)] flex items-center justify-center text-white font-serif text-2xl font-bold shadow-lg">
+                <div className="w-16 h-16 rounded-full bg-linear-to-br from-ouro to-terroso flex items-center justify-center text-white font-serif text-2xl font-bold shadow-lg">
                   {passo.num}
                 </div>
-                <div className="w-12 h-12 rounded-full bg-[var(--color-bege)] flex items-center justify-center">
-                  <passo.Icone className="w-6 h-6 text-[var(--color-ouro)]" />
+                <div className="w-12 h-12 rounded-full bg-bege flex items-center justify-center">
+                  <passo.Icone className="w-6 h-6 text-ouro" />
                 </div>
-                <h3 className="font-serif text-xl text-[var(--color-texto)]">{passo.titulo}</h3>
-                <p className="text-[var(--color-texto-suave)] text-sm leading-relaxed">{passo.desc}</p>
+                <h3 className="font-serif text-xl text-texto">{passo.titulo}</h3>
+                <p className="text-texto-suave text-sm leading-relaxed">{passo.desc}</p>
               </div>
             ))}
           </div>
@@ -201,10 +201,10 @@ export default async function HomePage() {
       </section>
 
       {/* Bloco de confiança */}
-      <section className="py-16 px-4 bg-gradient-to-r from-[var(--color-texto)] to-[var(--color-terroso)] text-white">
+      <section className="py-16 px-4 bg-linear-to-r from-texto to-terroso text-white">
         <div className="max-w-3xl mx-auto text-center">
           <div className="text-4xl mb-4 select-none">✦</div>
-          <h2 className="font-serif text-2xl md:text-3xl mb-4 text-[var(--color-ouro-suave)]">
+          <h2 className="font-serif text-2xl md:text-3xl mb-4 text-ouro-suave">
             Atendimento com coração
           </h2>
           <p className="text-white/80 leading-relaxed mb-8">

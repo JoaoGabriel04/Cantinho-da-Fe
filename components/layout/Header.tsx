@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -14,13 +14,13 @@ export function Header() {
   const [menuAberto, setMenuAberto] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--color-creme)]/95 backdrop-blur-sm border-b border-[var(--color-ouro)]/20 shadow-sm">
+    <header className="sticky top-0 z-50 bg-creme/95 backdrop-blur-sm border-b border-ouro/20 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-2xl font-serif font-bold text-gradient-ouro">
-              ✦ Cantinho Religioso
+              ✦ Cantinho da Fé
             </span>
           </Link>
 
@@ -30,7 +30,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[var(--color-texto-suave)] hover:text-[var(--color-ouro)] font-medium transition-colors duration-200"
+                className="text-texto-suave hover:text-ouro font-medium transition-colors duration-200"
               >
                 {link.label}
               </Link>
@@ -55,7 +55,7 @@ export function Header() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMenuAberto(!menuAberto)}
-              className="md:hidden p-2 rounded-lg text-[var(--color-texto-suave)] hover:text-[var(--color-ouro)] hover:bg-[var(--color-bege)] transition-colors"
+              className="md:hidden p-2 rounded-lg text-texto-suave hover:text-ouro hover:bg-bege transition-colors"
               aria-label="Menu"
             >
               {menuAberto ? (
@@ -74,13 +74,13 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuAberto && (
-        <div className="md:hidden border-t border-[var(--color-ouro)]/20 bg-[var(--color-creme)] px-4 py-4 space-y-3 animate-[fadeIn_0.2s_ease]">
+        <div className="md:hidden border-t border-ouro/20 bg-creme px-4 py-4 space-y-3 animate-[fadeIn_0.2s_ease]">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuAberto(false)}
-              className="block py-2 text-[var(--color-texto-suave)] hover:text-[var(--color-ouro)] font-medium transition-colors"
+              className="block py-2 text-texto-suave hover:text-ouro font-medium transition-colors"
             >
               {link.label}
             </Link>

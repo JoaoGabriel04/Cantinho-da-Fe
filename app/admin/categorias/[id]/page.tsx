@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { CategoriaForm } from "@/components/admin/CategoriaForm";
 
@@ -14,8 +14,8 @@ export default async function EditarCategoriaPage({ params }: Props) {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-serif text-3xl text-[var(--color-texto)]">Editar categoria</h1>
-        <p className="text-[var(--color-texto-suave)] mt-1">{categoria.nome}</p>
+        <h1 className="font-serif text-3xl text-texto">Editar categoria</h1>
+        <p className="text-texto-suave mt-1">{categoria.nome}</p>
       </div>
       <CategoriaForm categoria={categoria} />
     </div>

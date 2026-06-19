@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Star, MessageCircle, Layers, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -11,24 +11,24 @@ export default function SobrePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-16">
-        <p className="text-[var(--color-ouro)] font-medium tracking-widest uppercase text-sm mb-3">
+        <p className="text-ouro font-medium tracking-widest uppercase text-sm mb-3">
           ✦ Nossa história ✦
         </p>
-        <h1 className="font-serif text-4xl md:text-5xl text-[var(--color-texto)] mb-4">
+        <h1 className="font-serif text-4xl md:text-5xl text-texto mb-4">
           Sobre nós
         </h1>
-        <p className="text-[var(--color-texto-suave)] text-lg max-w-2xl mx-auto">
+        <p className="text-texto-suave text-lg max-w-2xl mx-auto">
           Uma loja que nasceu da fé e do desejo de servir.
         </p>
       </div>
 
       <div className="prose prose-lg max-w-none">
-        <div className="bg-white rounded-2xl p-8 md:p-12 border border-[var(--color-ouro)]/10 shadow-sm mb-8">
-          <h2 className="font-serif text-2xl text-[var(--color-texto)] mb-4">Nossa missão</h2>
-          <p className="text-[var(--color-texto-suave)] leading-relaxed mb-4">
-            O Cantinho Religioso nasceu da vontade de oferecer artigos religiosos de qualidade com um atendimento diferenciado, humano e carinhoso. Acreditamos que cada produto que vendemos carrega um significado especial e merece ser escolhido com cuidado.
+        <div className="bg-white rounded-2xl p-8 md:p-12 border border-ouro/10 shadow-sm mb-8">
+          <h2 className="font-serif text-2xl text-texto mb-4">Nossa missão</h2>
+          <p className="text-texto-suave leading-relaxed mb-4">
+            O Cantinho da Fé nasceu da vontade de oferecer artigos religiosos de qualidade com um atendimento diferenciado, humano e carinhoso. Acreditamos que cada produto que vendemos carrega um significado especial e merece ser escolhido com cuidado.
           </p>
-          <p className="text-[var(--color-texto-suave)] leading-relaxed">
+          <p className="text-texto-suave leading-relaxed">
             Nossa missão é ser um elo entre a fé das pessoas e os objetos que expressam essa fé, seja um terço passado de geração em geração, uma bíblia presenteada a um ente querido ou uma imagem que adorna um lar com paz e espiritualidade.
           </p>
         </div>
@@ -42,18 +42,18 @@ export default function SobrePage() {
               { titulo: "Confiança", desc: "Transparência e honestidade em cada venda, do início ao fim.", Icone: ShieldCheck },
             ] as { titulo: string; desc: string; Icone: LucideIcon }[]
           ).map((item) => (
-            <div key={item.titulo} className="flex gap-4 p-6 bg-[var(--color-bege)] rounded-xl">
-              <item.Icone className="w-7 h-7 text-[var(--color-ouro)] flex-shrink-0 mt-0.5" />
+            <div key={item.titulo} className="flex gap-4 p-6 bg-bege rounded-xl">
+              <item.Icone className="w-7 h-7 text-ouro flex-shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-[var(--color-texto)] mb-1">{item.titulo}</h3>
-                <p className="text-sm text-[var(--color-texto-suave)]">{item.desc}</p>
+                <h3 className="font-semibold text-texto mb-1">{item.titulo}</h3>
+                <p className="text-sm text-texto-suave">{item.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="bg-[var(--color-texto)] text-white rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="font-serif text-2xl text-[var(--color-ouro-suave)] mb-4">Fale conosco</h2>
+        <div className="bg-texto text-white rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="font-serif text-2xl text-ouro-suave mb-4">Fale conosco</h2>
           <div className="space-y-3 text-white/80 mb-8">
             <p><strong className="text-white">Horário de atendimento</strong></p>
             <p>Segunda a Sexta: 8h às 18h</p>

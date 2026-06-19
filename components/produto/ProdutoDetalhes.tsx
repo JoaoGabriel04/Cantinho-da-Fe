@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -67,7 +67,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Galeria */}
         <div>
-          <div className="relative aspect-square bg-[var(--color-bege)] rounded-2xl overflow-hidden mb-4">
+          <div className="relative aspect-square bg-bege rounded-2xl overflow-hidden mb-4">
             {imagens[imagemAtiva] ? (
               <Image
                 src={imagens[imagemAtiva].url}
@@ -78,7 +78,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-[var(--color-texto-suave)]/20">
+              <div className="w-full h-full flex items-center justify-center text-texto-suave/20">
                 <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -93,8 +93,8 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
                   onClick={() => setImagemAtiva(i)}
                   className={`relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
                     i === imagemAtiva
-                      ? "border-[var(--color-ouro)]"
-                      : "border-transparent hover:border-[var(--color-ouro)]/40"
+                      ? "border-ouro"
+                      : "border-transparent hover:border-ouro/40"
                   }`}
                 >
                   <Image src={img.url} alt={`Imagem ${i + 1}`} fill className="object-cover" />
@@ -109,38 +109,38 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
           <div className="mb-3">
             <StatusSelo status={produto.status} tamanho="md" />
           </div>
-          <p className="text-sm text-[var(--color-texto-suave)] mb-1">#{produto.codigo}</p>
-          <h1 className="font-serif text-3xl md:text-4xl text-[var(--color-texto)] mb-2 leading-tight">
+          <p className="text-sm text-texto-suave mb-1">#{produto.codigo}</p>
+          <h1 className="font-serif text-3xl md:text-4xl text-texto mb-2 leading-tight">
             {produto.nome}
           </h1>
           {produto.categoria && (
             <a
               href={`/produtos?categoria=${produto.categoria.slug}`}
-              className="text-sm text-[var(--color-ouro)] hover:underline mb-4 inline-block"
+              className="text-sm text-ouro hover:underline mb-4 inline-block"
             >
               {produto.categoria.nome}
             </a>
           )}
 
-          <p className="text-3xl font-bold text-[var(--color-ouro)] mb-6">
+          <p className="text-3xl font-bold text-ouro mb-6">
             R$ {produto.preco.toFixed(2).replace(".", ",")}
           </p>
 
           {disponivel && (
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center border border-[var(--color-ouro)]/30 rounded-full overflow-hidden">
+              <div className="flex items-center border border-ouro/30 rounded-full overflow-hidden">
                 <button
                   onClick={() => setQuantidade(Math.max(1, quantidade - 1))}
-                  className="px-4 py-2 text-[var(--color-ouro)] hover:bg-[var(--color-bege)] transition-colors font-bold"
+                  className="px-4 py-2 text-ouro hover:bg-bege transition-colors font-bold"
                 >
                   −
                 </button>
-                <span className="px-4 py-2 font-medium text-[var(--color-texto)] min-w-[3rem] text-center">
+                <span className="px-4 py-2 font-medium text-texto min-w-[3rem] text-center">
                   {quantidade}
                 </span>
                 <button
                   onClick={() => setQuantidade(quantidade + 1)}
-                  className="px-4 py-2 text-[var(--color-ouro)] hover:bg-[var(--color-bege)] transition-colors font-bold"
+                  className="px-4 py-2 text-ouro hover:bg-bege transition-colors font-bold"
                 >
                   +
                 </button>
@@ -150,7 +150,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
                 className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full font-medium transition-all duration-200 ${
                   adicionado
                     ? "bg-green-500 text-white"
-                    : "border-2 border-[var(--color-ouro)] text-[var(--color-ouro)] hover:bg-[var(--color-ouro)] hover:text-white"
+                    : "border-2 border-ouro text-ouro hover:bg-ouro hover:text-white"
                 }`}
               >
                 {adicionado ? (
@@ -184,9 +184,9 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
           </button>
 
           {/* Descrição */}
-          <div className="border-t border-[var(--color-ouro)]/10 pt-6">
-            <h2 className="font-serif text-xl text-[var(--color-texto)] mb-3">Descrição</h2>
-            <p className="text-[var(--color-texto-suave)] leading-relaxed whitespace-pre-wrap">
+          <div className="border-t border-ouro/10 pt-6">
+            <h2 className="font-serif text-xl text-texto mb-3">Descrição</h2>
+            <p className="text-texto-suave leading-relaxed whitespace-pre-wrap">
               {produto.descricao}
             </p>
           </div>
@@ -195,8 +195,8 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
 
       {/* Produtos relacionados */}
       {relacionados.length > 0 && (
-        <section className="mt-20 pt-12 border-t border-[var(--color-ouro)]/10">
-          <h2 className="font-serif text-2xl text-[var(--color-texto)] mb-8">
+        <section className="mt-20 pt-12 border-t border-ouro/10">
+          <h2 className="font-serif text-2xl text-texto mb-8">
             Você também pode gostar
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

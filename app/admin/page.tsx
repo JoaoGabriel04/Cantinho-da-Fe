@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+﻿import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Package, CheckCircle, XCircle, Tag, Plus } from "lucide-react";
 
@@ -57,8 +57,8 @@ export default async function AdminDashboard() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-serif text-3xl text-[var(--color-texto)]">Dashboard</h1>
-        <p className="text-[var(--color-texto-suave)] mt-1">Visão geral da loja</p>
+        <h1 className="font-serif text-3xl text-texto">Dashboard</h1>
+        <p className="text-texto-suave mt-1">Visão geral da loja</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
@@ -70,43 +70,43 @@ export default async function AdminDashboard() {
           >
             <card.Icone className={`w-8 h-8 mb-3 ${card.corIcone}`} />
             <p className={`text-4xl font-bold mb-1 ${card.corValor}`}>{card.valor}</p>
-            <p className="text-sm text-[var(--color-texto-suave)]">{card.titulo}</p>
+            <p className="text-sm text-texto-suave">{card.titulo}</p>
           </Link>
         ))}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-          <h2 className="font-semibold text-[var(--color-texto)] mb-4">Ações rápidas</h2>
+          <h2 className="font-semibold text-texto mb-4">Ações rápidas</h2>
           <div className="space-y-3">
             <Link
               href="/admin/produtos/novo"
-              className="flex items-center gap-3 p-4 bg-[var(--color-bege)] rounded-xl hover:bg-[var(--color-ouro)]/10 transition-colors"
+              className="flex items-center gap-3 p-4 bg-bege rounded-xl hover:bg-ouro/10 transition-colors"
             >
-              <Plus className="w-6 h-6 text-[var(--color-ouro)] flex-shrink-0" />
+              <Plus className="w-6 h-6 text-ouro flex-shrink-0" />
               <div>
-                <p className="font-medium text-sm text-[var(--color-texto)]">Novo produto</p>
-                <p className="text-xs text-[var(--color-texto-suave)]">Cadastrar um produto no catálogo</p>
+                <p className="font-medium text-sm text-texto">Novo produto</p>
+                <p className="text-xs text-texto-suave">Cadastrar um produto no catálogo</p>
               </div>
             </Link>
             <Link
               href="/admin/categorias/nova"
-              className="flex items-center gap-3 p-4 bg-[var(--color-bege)] rounded-xl hover:bg-[var(--color-ouro)]/10 transition-colors"
+              className="flex items-center gap-3 p-4 bg-bege rounded-xl hover:bg-ouro/10 transition-colors"
             >
-              <Tag className="w-6 h-6 text-[var(--color-ouro)] flex-shrink-0" />
+              <Tag className="w-6 h-6 text-ouro flex-shrink-0" />
               <div>
-                <p className="font-medium text-sm text-[var(--color-texto)]">Nova categoria</p>
-                <p className="text-xs text-[var(--color-texto-suave)]">Criar uma nova categoria de produtos</p>
+                <p className="font-medium text-sm text-texto">Nova categoria</p>
+                <p className="text-xs text-texto-suave">Criar uma nova categoria de produtos</p>
               </div>
             </Link>
           </div>
         </div>
 
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-          <h2 className="font-semibold text-[var(--color-texto)] mb-4">Estoque resumido</h2>
+          <h2 className="font-semibold text-texto mb-4">Estoque resumido</h2>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-[var(--color-texto-suave)]">Em estoque</span>
+              <span className="text-sm text-texto-suave">Em estoque</span>
               <div className="flex items-center gap-2">
                 <div
                   className="h-2 bg-green-400 rounded-full"
@@ -120,7 +120,7 @@ export default async function AdminDashboard() {
               </div>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-[var(--color-texto-suave)]">Esgotados</span>
+              <span className="text-sm text-texto-suave">Esgotados</span>
               <div className="flex items-center gap-2">
                 <div
                   className="h-2 bg-red-400 rounded-full"

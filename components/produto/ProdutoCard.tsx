@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -43,9 +43,9 @@ export function ProdutoCard({ produto }: Props) {
 
   return (
     <Link href={`/produtos/${produto.slug}`} className="group block">
-      <div className={`bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-[var(--color-ouro)]/10 ${!disponivel ? "opacity-70" : ""}`}>
+      <div className={`bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-ouro/10 ${!disponivel ? "opacity-70" : ""}`}>
         {/* Imagem */}
-        <div className="relative aspect-square bg-[var(--color-bege)] overflow-hidden">
+        <div className="relative aspect-square bg-bege overflow-hidden">
           {imagemPrincipal ? (
             <Image
               src={imagemPrincipal}
@@ -55,7 +55,7 @@ export function ProdutoCard({ produto }: Props) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-[var(--color-texto-suave)]/30">
+            <div className="w-full h-full flex items-center justify-center text-texto-suave/30">
               <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
@@ -68,12 +68,12 @@ export function ProdutoCard({ produto }: Props) {
 
         {/* Info */}
         <div className="p-4">
-          <p className="text-xs text-[var(--color-texto-suave)] mb-1">#{produto.codigo}</p>
-          <h3 className="font-medium text-[var(--color-texto)] mb-2 leading-snug line-clamp-2">
+          <p className="text-xs text-texto-suave mb-1">#{produto.codigo}</p>
+          <h3 className="font-medium text-texto mb-2 leading-snug line-clamp-2">
             {produto.nome}
           </h3>
           <div className="flex items-center justify-between gap-2">
-            <span className="text-lg font-bold text-[var(--color-ouro)]">
+            <span className="text-lg font-bold text-ouro">
               R$ {produto.preco.toFixed(2).replace(".", ",")}
             </span>
             {disponivel && (
@@ -82,7 +82,7 @@ export function ProdutoCard({ produto }: Props) {
                 className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 ${
                   adicionado
                     ? "bg-green-500 text-white"
-                    : "bg-[var(--color-bege)] text-[var(--color-ouro)] hover:bg-[var(--color-ouro)] hover:text-white border border-[var(--color-ouro)]/30"
+                    : "bg-bege text-ouro hover:bg-ouro hover:text-white border border-ouro/30"
                 }`}
               >
                 {adicionado ? (

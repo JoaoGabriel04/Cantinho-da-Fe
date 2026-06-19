@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+﻿import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Plus, Package } from "lucide-react";
 import { AlternarStatusBotao } from "@/components/admin/AlternarStatusBotao";
@@ -32,12 +32,12 @@ export default async function AdminProdutosPage({
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="font-serif text-3xl text-[var(--color-texto)]">Produtos</h1>
-          <p className="text-[var(--color-texto-suave)] mt-1">{produtos.length} produtos</p>
+          <h1 className="font-serif text-3xl text-texto">Produtos</h1>
+          <p className="text-texto-suave mt-1">{produtos.length} produtos</p>
         </div>
         <Link
           href="/admin/produtos/novo"
-          className="flex items-center gap-2 bg-[var(--color-ouro)] hover:bg-[var(--color-terroso)] text-white px-5 py-2.5 rounded-xl font-medium transition-colors text-sm"
+          className="flex items-center gap-2 bg-ouro hover:bg-terroso text-white px-5 py-2.5 rounded-xl font-medium transition-colors text-sm"
         >
           <Plus className="w-4 h-4" />
           Novo produto
@@ -51,12 +51,12 @@ export default async function AdminProdutosPage({
           name="busca"
           defaultValue={params.busca}
           placeholder="Buscar por nome..."
-          className="border border-gray-200 rounded-lg px-3 py-2 text-sm flex-1 min-w-40 focus:outline-none focus:border-[var(--color-ouro)]"
+          className="border border-gray-200 rounded-lg px-3 py-2 text-sm flex-1 min-w-40 focus:outline-none focus:border-ouro"
         />
         <select
           name="status"
           defaultValue={params.status ?? ""}
-          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[var(--color-ouro)]"
+          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-ouro"
         >
           <option value="">Todos os status</option>
           <option value="DISPONIVEL">Disponível</option>
@@ -65,7 +65,7 @@ export default async function AdminProdutosPage({
         <select
           name="categoria"
           defaultValue={params.categoria ?? ""}
-          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[var(--color-ouro)]"
+          className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-ouro"
         >
           <option value="">Todas as categorias</option>
           {categorias.map((cat) => (
@@ -74,7 +74,7 @@ export default async function AdminProdutosPage({
         </select>
         <button
           type="submit"
-          className="bg-[var(--color-ouro)] text-white px-4 py-2 rounded-lg text-sm hover:bg-[var(--color-terroso)] transition-colors"
+          className="bg-ouro text-white px-4 py-2 rounded-lg text-sm hover:bg-terroso transition-colors"
         >
           Filtrar
         </button>
@@ -88,7 +88,7 @@ export default async function AdminProdutosPage({
       {/* Tabela */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         {produtos.length === 0 ? (
-          <div className="flex flex-col items-center py-16 text-[var(--color-texto-suave)] gap-3">
+          <div className="flex flex-col items-center py-16 text-texto-suave gap-3">
             <Package className="w-10 h-10 opacity-30" />
             <p>Nenhum produto encontrado.</p>
           </div>
@@ -96,11 +96,11 @@ export default async function AdminProdutosPage({
           <table className="w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
-                <th className="text-left px-5 py-3 font-medium text-[var(--color-texto-suave)]">Produto</th>
-                <th className="text-left px-5 py-3 font-medium text-[var(--color-texto-suave)]">Categoria</th>
-                <th className="text-left px-5 py-3 font-medium text-[var(--color-texto-suave)]">Preço</th>
-                <th className="text-left px-5 py-3 font-medium text-[var(--color-texto-suave)]">Status</th>
-                <th className="text-left px-5 py-3 font-medium text-[var(--color-texto-suave)]">Ações</th>
+                <th className="text-left px-5 py-3 font-medium text-texto-suave">Produto</th>
+                <th className="text-left px-5 py-3 font-medium text-texto-suave">Categoria</th>
+                <th className="text-left px-5 py-3 font-medium text-texto-suave">Preço</th>
+                <th className="text-left px-5 py-3 font-medium text-texto-suave">Status</th>
+                <th className="text-left px-5 py-3 font-medium text-texto-suave">Ações</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -108,7 +108,7 @@ export default async function AdminProdutosPage({
                 <tr key={produto.id} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[var(--color-bege)] overflow-hidden flex-shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-bege overflow-hidden flex-shrink-0">
                         {produto.imagens[0] && (
                           <img
                             src={produto.imagens[0].url}
@@ -118,15 +118,15 @@ export default async function AdminProdutosPage({
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-[var(--color-texto)]">{produto.nome}</p>
-                        <p className="text-xs text-[var(--color-texto-suave)]">#{produto.codigo}</p>
+                        <p className="font-medium text-texto">{produto.nome}</p>
+                        <p className="text-xs text-texto-suave">#{produto.codigo}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-[var(--color-texto-suave)]">
+                  <td className="px-5 py-4 text-texto-suave">
                     {produto.categoria?.nome ?? "—"}
                   </td>
-                  <td className="px-5 py-4 font-medium text-[var(--color-texto)]">
+                  <td className="px-5 py-4 font-medium text-texto">
                     R$ {Number(produto.preco).toFixed(2).replace(".", ",")}
                   </td>
                   <td className="px-5 py-4">
@@ -136,7 +136,7 @@ export default async function AdminProdutosPage({
                     <div className="flex items-center gap-2">
                       <Link
                         href={`/admin/produtos/${produto.id}`}
-                        className="text-[var(--color-ouro)] hover:text-[var(--color-terroso)] font-medium transition-colors"
+                        className="text-ouro hover:text-terroso font-medium transition-colors"
                       >
                         Editar
                       </Link>

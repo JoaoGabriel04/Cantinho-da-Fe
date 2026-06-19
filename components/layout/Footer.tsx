@@ -1,18 +1,18 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export function Footer() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--color-texto)] text-[var(--color-bege)] mt-20">
+    <footer className="bg-texto text-bege mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Sobre */}
           <div>
-            <h3 className="font-serif text-xl text-[var(--color-ouro-suave)] mb-4">
-              ✦ Cantinho Religioso
+            <h3 className="font-serif text-xl text-ouro-suave mb-4">
+              ✦ Cantinho da Fé
             </h3>
-            <p className="text-sm text-[var(--color-bege)]/70 leading-relaxed">
+            <p className="text-sm text-bege/70 leading-relaxed">
               Com amor e fé, levamos artigos religiosos de qualidade até você.
               Atendimento humanizado e direto pelo WhatsApp.
             </p>
@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-semibold text-[var(--color-ouro-suave)] mb-4">Navegação</h4>
+            <h4 className="font-semibold text-ouro-suave mb-4">Navegação</h4>
             <ul className="space-y-2 text-sm">
               {[
                 { href: "/", label: "Início" },
@@ -30,7 +30,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[var(--color-bege)]/70 hover:text-[var(--color-ouro-suave)] transition-colors"
+                    className="text-bege/70 hover:text-ouro-suave transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -41,12 +41,12 @@ export function Footer() {
 
           {/* Contato */}
           <div>
-            <h4 className="font-semibold text-[var(--color-ouro-suave)] mb-4">Contato</h4>
-            <div className="space-y-3 text-sm text-[var(--color-bege)]/70">
+            <h4 className="font-semibold text-ouro-suave mb-4">Contato</h4>
+            <div className="space-y-3 text-sm text-bege/70">
               <div>
-                <p className="font-medium text-[var(--color-bege)]/90">Horário de atendimento</p>
-                <p>Seg – Sex: 8h às 18h</p>
-                <p>Sáb: 8h às 13h</p>
+                <p className="font-medium text-bege/90">Horário de atendimento</p>
+                <p>Seg – Sex: 8h às 17h</p>
+                <p>Sáb: 8h às 12h</p>
               </div>
               <a
                 href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMERO}`}
@@ -63,8 +63,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[var(--color-bege)]/10 mt-10 pt-6 text-center text-xs text-[var(--color-bege)]/40">
-          © {ano} Cantinho Religioso. Todos os direitos reservados.
+        <div className="border-t border-bege/10 mt-10 pt-6 text-center text-xs text-bege/40">
+          © {ano} Cantinho da Fé. Todos os direitos reservados.
         </div>
       </div>
     </footer>

@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { ProdutoDetalhes } from "@/components/produto/ProdutoDetalhes";
@@ -43,12 +43,12 @@ export default async function ProdutoPage({ params }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Breadcrumb */}
-      <nav className="text-sm text-[var(--color-texto-suave)] mb-8 flex items-center gap-2">
-        <a href="/" className="hover:text-[var(--color-ouro)] transition-colors">Início</a>
+      <nav className="text-sm text-texto-suave mb-8 flex items-center gap-2">
+        <a href="/" className="hover:text-ouro transition-colors">Início</a>
         <span>/</span>
-        <a href="/produtos" className="hover:text-[var(--color-ouro)] transition-colors">Catálogo</a>
+        <a href="/produtos" className="hover:text-ouro transition-colors">Catálogo</a>
         <span>/</span>
-        <span className="text-[var(--color-texto)] truncate max-w-48">{produto.nome}</span>
+        <span className="text-texto truncate max-w-48">{produto.nome}</span>
       </nav>
 
       <ProdutoDetalhes

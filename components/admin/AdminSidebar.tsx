@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,9 +38,9 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-[var(--color-texto)] text-white flex-shrink-0 hidden lg:flex flex-col">
+    <aside className="w-64 bg-texto text-white flex-shrink-0 hidden lg:flex flex-col">
       <div className="p-6 border-b border-white/10">
-        <h1 className="font-serif text-lg text-[var(--color-ouro-suave)]">✦ Cantinho Religioso</h1>
+        <h1 className="font-serif text-lg text-ouro-suave">✦ Cantinho da Fé</h1>
         <p className="text-xs text-white/40 mt-1">Painel Admin</p>
       </div>
 
@@ -53,7 +53,7 @@ export function AdminSidebar() {
               href={link.href}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-sm font-medium ${
                 ativo
-                  ? "bg-[var(--color-ouro)] text-white"
+                  ? "bg-ouro text-white"
                   : "text-white/70 hover:bg-white/10 hover:text-white"
               }`}
             >
