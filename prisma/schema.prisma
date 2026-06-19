@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Categoria {
+  id        String    @id @default(cuid())
+  nome      String
+  slug      String    @unique
+  imagemUrl String?
+  produtos  Produto[]
+  createdAt DateTime  @default(now())
+}
+
+model Produto {
+  id          String        @id @default(cuid())
+  codigo      String        @unique
+  nome        String
+  slug        String        @unique
+  descricao   String
+  preco       Decimal       @db.Decimal(10, 2)
+  status      StatusEstoque @default(DISPONIVEL)
+  destaque    Boolean       @default(false)
+  ativo       Boolean       @default(true)
+  categoriaId String
+  categoria   Categoria     @relation(fields: [categoriaId], references: [id])
+  imagens     Imagem[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Imagem {
+  id        String  @id @default(cuid())
+  url       String
+  produtoId String
+  produto   Produto @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+  ordem     Int     @default(0)
+}
+
+enum StatusEstoque {
+  DISPONIVEL
+  ESGOTADO
+}
+
+model Admin {
+  id    String @id @default(cuid())
+  email String @unique
+  senha String
+}

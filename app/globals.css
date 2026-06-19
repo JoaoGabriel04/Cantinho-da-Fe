@@ -1,1 +1,68 @@
 @import "tailwindcss";
+
+@theme {
+  --color-ouro: #b8860b;
+  --color-ouro-claro: #d4a853;
+  --color-ouro-suave: #f0d080;
+  --color-marfim: #faf7f0;
+  --color-bege: #f5efe6;
+  --color-terroso: #8b6914;
+  --color-vinho: #6b2d3e;
+  --color-vinho-claro: #8b3a50;
+  --color-creme: #fffdf7;
+  --color-texto: #2c2520;
+  --color-texto-suave: #6b5e52;
+
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-creme);
+  color: var(--color-texto);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+@layer utilities {
+  .text-gradient-ouro {
+    background: linear-gradient(135deg, #b8860b, #d4a853, #b8860b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-ouro {
+    border-color: var(--color-ouro);
+  }
+
+  .bg-ouro {
+    background-color: var(--color-ouro);
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+}
