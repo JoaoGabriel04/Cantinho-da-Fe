@@ -1,17 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ouro: #b8860b;
-  --color-ouro-claro: #d4a853;
-  --color-ouro-suave: #f0d080;
-  --color-marfim: #faf7f0;
-  --color-bege: #f5efe6;
-  --color-terroso: #8b6914;
-  --color-vinho: #6b2d3e;
-  --color-vinho-claro: #8b3a50;
-  --color-creme: #fffdf7;
-  --color-texto: #2c2520;
-  --color-texto-suave: #6b5e52;
+  /* Azul primário — cor de marca */
+  --color-ouro: #1a56b0;
+  --color-ouro-claro: #4a82d0;
+  /* Dourado suave — traço de ouro para texto em fundos escuros */
+  --color-ouro-suave: #f0d898;
+
+  /* Fundos: branco e branco-azulado */
+  --color-creme: #ffffff;
+  --color-marfim: #f0f6ff;
+  --color-bege: #e4eeff;
+
+  /* Hover / variante escura do azul */
+  --color-terroso: #13428a;
+
+  /* Seções escuras: azul naval */
+  --color-vinho: #0b1f42;
+  --color-vinho-claro: #162f63;
+
+  /* Texto */
+  --color-texto: #0a1930;
+  --color-texto-suave: #4a607c;
 
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
@@ -47,8 +57,9 @@ h6 {
 }
 
 @layer utilities {
+  /* Traço de ouro: aplicado ao logo e headline do hero */
   .text-gradient-ouro {
-    background: linear-gradient(135deg, #b8860b, #d4a853, #b8860b);
+    background: linear-gradient(135deg, #c8a020, #e8c855, #c8a020);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -68,6 +79,6 @@ h6 {
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 24px rgba(26, 86, 176, 0.12);
   }
 }
