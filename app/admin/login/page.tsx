@@ -1,20 +1,15 @@
 ﻿"use client";
 
-import { useState, useEffect } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { status } = useSession();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
-
-  useEffect(() => {
-    if (status === "authenticated") router.replace("/admin");
-  }, [status, router]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

@@ -68,13 +68,13 @@ export default async function HomePage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] leading-none">✦</div>
         </div>
         <div className="relative max-w-4xl mx-auto text-center px-4">
-          <p className="text-dourado font-medium tracking-widest uppercase text-sm mb-4">
+          <p className="text-ouro font-medium tracking-widest uppercase text-sm mb-4">
             ✦ Com fé e carinho ✦
           </p>
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-texto mb-6 leading-tight">
             Artigos Religiosos para
             <br />
-            <span className="text-gradient-ouro">nutrir a sua fé</span>
+            <span className="text-gradient-azul">nutrir a sua fé</span>
           </h1>
           <p className="text-texto-suave text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             Terços, bíblias, imagens sacras, decoração e muito mais. Escolha com calma e finalize sua compra pelo WhatsApp com atendimento humanizado.
@@ -82,7 +82,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/produtos"
-              className="inline-flex items-center gap-2 bg-ouro hover:bg-terroso text-white px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 shadow-lg shadow-dourado/30"
+              className="inline-flex items-center gap-2 bg-ouro hover:bg-terroso text-white px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 shadow-lg shadow-blue-600/30"
             >
               Ver Catálogo
               <ArrowRight className="w-5 h-5" />
@@ -91,7 +91,7 @@ export default async function HomePage() {
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMERO}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white hover:bg-bege text-texto px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 border border-dourado/40 shadow-sm"
+              className="inline-flex items-center gap-2 bg-white hover:bg-linear-to-r from-dourado via-ouro-suave to-dourado hover:text-white text-dourado px-8 py-4 rounded-full font-medium text-lg transition-all duration-500 border border-dourado/40 shadow-sm"
             >
               <WhatsAppIcon />
               Falar no WhatsApp
@@ -118,16 +118,16 @@ export default async function HomePage() {
                 <Link
                   key={cat.id}
                   href={`/produtos?categoria=${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-dourado/20 hover:border-dourado/60 hover:shadow-md hover:shadow-dourado/10 transition-all duration-200 hover-lift"
+                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-ouro/20 hover:border-dourado/60 hover:shadow-md hover:shadow-dourado/10 transition-all duration-200 hover-lift"
                 >
-                  <div className="w-16 h-16 rounded-full bg-bege flex items-center justify-center overflow-hidden relative">
+                  <div className="w-16 h-16 rounded-full bg-bege group-hover:bg-ouro-suave/50 flex items-center justify-center overflow-hidden relative">
                     {cat.imagemUrl ? (
                       <Image src={cat.imagemUrl} alt={cat.nome} fill className="object-cover" />
                     ) : (
-                      <Icone className="w-7 h-7 text-ouro" />
+                      <Icone className="w-7 h-7 text-ouro group-hover:text-dourado" />
                     )}
                   </div>
-                  <span className="text-sm font-medium text-texto text-center group-hover:text-ouro transition-colors">
+                  <span className="text-sm font-medium text-texto text-center group-hover:text-dourado transition-colors">
                     {cat.nome}
                   </span>
                 </Link>

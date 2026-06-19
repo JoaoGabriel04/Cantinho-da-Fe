@@ -19,7 +19,7 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl font-serif font-bold text-gradient-ouro">
+            <span className="text-2xl font-serif font-bold text-gradient-azul">
               ✦ Cantinho da Fé
             </span>
           </Link>

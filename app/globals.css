@@ -65,6 +65,12 @@ h6 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  .text-gradient-azul {
+    background: linear-gradient(135deg, #0081b9, #55c8e8, #0081b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
   .border-ouro {
     border-color: var(--color-ouro);
