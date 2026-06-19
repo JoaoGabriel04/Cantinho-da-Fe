@@ -6,7 +6,9 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\Projetos\\\\SitesClaude\\\\site-cantinho\" -Recurse | Where-Object { !$_.PSIsContainer -and $_.FullName -notmatch 'node_modules|\\\\.next|\\\\.git|generated|package-lock' } | Select-Object FullName | Sort-Object FullName)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(git remote *)",
+      "Bash(git push *)"
     ]
   }
 }

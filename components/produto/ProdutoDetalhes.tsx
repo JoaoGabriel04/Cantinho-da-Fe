@@ -128,10 +128,10 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
 
           {disponivel && (
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center border border-ouro/30 rounded-full overflow-hidden">
+              <div className="flex items-center border border-dourado/40 rounded-full overflow-hidden">
                 <button
                   onClick={() => setQuantidade(Math.max(1, quantidade - 1))}
-                  className="px-4 py-2 text-ouro hover:bg-bege transition-colors font-bold"
+                  className="px-4 py-2 text-dourado hover:bg-bege transition-colors font-bold"
                 >
                   −
                 </button>
@@ -140,7 +140,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
                 </span>
                 <button
                   onClick={() => setQuantidade(quantidade + 1)}
-                  className="px-4 py-2 text-ouro hover:bg-bege transition-colors font-bold"
+                  className="px-4 py-2 text-dourado hover:bg-bege transition-colors font-bold"
                 >
                   +
                 </button>
@@ -150,7 +150,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
                 className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full font-medium transition-all duration-200 ${
                   adicionado
                     ? "bg-green-500 text-white"
-                    : "border-2 border-ouro text-ouro hover:bg-ouro hover:text-white"
+                    : "border-2 border-dourado text-dourado hover:bg-dourado hover:text-white"
                 }`}
               >
                 {adicionado ? (

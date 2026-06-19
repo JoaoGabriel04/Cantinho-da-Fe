@@ -11,7 +11,7 @@ export default function SobrePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-16">
-        <p className="text-ouro font-medium tracking-widest uppercase text-sm mb-3">
+        <p className="text-dourado font-medium tracking-widest uppercase text-sm mb-3">
           ✦ Nossa história ✦
         </p>
         <h1 className="font-serif text-4xl md:text-5xl text-texto mb-4">

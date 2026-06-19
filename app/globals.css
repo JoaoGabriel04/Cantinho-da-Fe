@@ -4,8 +4,9 @@
   /* Azul primário — cor de marca */
   --color-ouro: #1a56b0;
   --color-ouro-claro: #4a82d0;
-  /* Dourado suave — traço de ouro para texto em fundos escuros */
-  --color-ouro-suave: #f0d898;
+  /* Dourado — traço de ouro para ornamentos, sombras e detalhes */
+  --color-dourado: #c8a020;
+  --color-ouro-suave: #f0d898; /* dourado suave p/ texto em fundo escuro */
 
   /* Fundos: branco e branco-azulado */
   --color-creme: #ffffff;

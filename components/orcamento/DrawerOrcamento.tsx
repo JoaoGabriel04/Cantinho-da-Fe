@@ -46,9 +46,9 @@ export function DrawerOrcamento() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-ouro/20 flex-shrink-0">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-dourado/30 flex-shrink-0">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-ouro" />
+            <FileText className="w-5 h-5 text-dourado" />
             <h2 className="font-serif text-xl text-texto">
               Lista de Orçamento
             </h2>
@@ -92,7 +92,7 @@ export function DrawerOrcamento() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => atualizarQuantidade(item.produtoId, item.quantidade - 1)}
-                      className="w-7 h-7 rounded-full border border-ouro/40 flex items-center justify-center text-ouro hover:bg-ouro hover:text-white transition-colors"
+                      className="w-7 h-7 rounded-full border border-dourado/50 flex items-center justify-center text-dourado hover:bg-dourado hover:text-white transition-colors"
                       aria-label="Diminuir"
                     >
                       <Minus className="w-3 h-3" />
@@ -102,7 +102,7 @@ export function DrawerOrcamento() {
                     </span>
                     <button
                       onClick={() => atualizarQuantidade(item.produtoId, item.quantidade + 1)}
-                      className="w-7 h-7 rounded-full border border-ouro/40 flex items-center justify-center text-ouro hover:bg-ouro hover:text-white transition-colors"
+                      className="w-7 h-7 rounded-full border border-dourado/50 flex items-center justify-center text-dourado hover:bg-dourado hover:text-white transition-colors"
                       aria-label="Aumentar"
                     >
                       <Plus className="w-3 h-3" />
@@ -123,7 +123,7 @@ export function DrawerOrcamento() {
 
         {/* Footer */}
         {itens.length > 0 && (
-          <div className="px-5 py-4 border-t border-ouro/20 flex-shrink-0 space-y-3">
+          <div className="px-5 py-4 border-t border-dourado/30 flex-shrink-0 space-y-3">
             <div className="flex justify-between text-sm">
               <span className="text-texto-suave">Total estimado:</span>
               <span className="font-bold text-texto">

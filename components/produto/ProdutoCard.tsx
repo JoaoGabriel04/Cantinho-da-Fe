@@ -82,7 +82,7 @@ export function ProdutoCard({ produto }: Props) {
                 className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 ${
                   adicionado
                     ? "bg-green-500 text-white"
-                    : "bg-bege text-ouro hover:bg-ouro hover:text-white border border-ouro/30"
+                    : "bg-bege text-dourado hover:bg-dourado hover:text-white border border-dourado/40"
                 }`}
               >
                 {adicionado ? (
