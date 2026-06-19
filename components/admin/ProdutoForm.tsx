@@ -60,8 +60,16 @@ export function ProdutoForm({ categorias, produto }: Props) {
     Array.from(arquivos).forEach((f) => fd.append("files", f));
 
     const res = await fetch("/api/upload", { method: "POST", body: fd });
-    const data = await res.json();
 
+    if (!res.ok) {
+      const msg = await res.text().catch(() => "Erro desconhecido");
+      setErro(`Erro ao fazer upload das imagens (${res.status}): ${msg}`);
+      setEnviandoImagens(false);
+      e.target.value = "";
+      return;
+    }
+
+    const data = await res.json();
     setImagens((prev) => [...prev, ...data.urls]);
     setEnviandoImagens(false);
     e.target.value = "";

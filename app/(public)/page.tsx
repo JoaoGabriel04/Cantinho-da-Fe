@@ -61,25 +61,30 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-linear-to-br from-marfim via-bege to-creme py-24 md:py-36">
+      <section className="gsap-hero relative overflow-hidden bg-linear-to-br from-marfim via-bege to-creme py-24 md:py-36">
         <div className="absolute inset-0 opacity-5 select-none pointer-events-none">
-          <div className="absolute top-10 left-10 text-9xl">✦</div>
-          <div className="absolute bottom-10 right-10 text-7xl">✦</div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] leading-none">✦</div>
+          <div className="gsap-hero-deco absolute top-10 left-10 text-9xl">
+            <span className="hero-sparkle inline-block" data-duration="8" data-delay="0">✦</span>
+          </div>
+          <div className="gsap-hero-deco absolute bottom-10 right-10 text-7xl">
+            <span className="hero-sparkle inline-block" data-duration="12" data-delay="2">✦</span>
+          </div>
+          <div className="gsap-hero-deco absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] leading-none">
+            <span className="hero-sparkle inline-block" data-duration="22" data-delay="5">✦</span>
+          </div>
         </div>
         <div className="relative max-w-4xl mx-auto text-center px-4">
-          <p className="text-ouro font-medium tracking-widest uppercase text-sm mb-4">
+          <p className="gsap-hero-label text-ouro font-medium tracking-widest uppercase text-sm mb-4">
             ✦ Com fé e carinho ✦
           </p>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-texto mb-6 leading-tight">
-            Artigos Religiosos para
-            <br />
-            <span className="text-gradient-azul">nutrir a sua fé</span>
+          <h1 className="gsap-hero-title font-serif text-4xl md:text-6xl lg:text-7xl text-texto mb-6 leading-tight">
+            <span className="gsap-title-line block">Artigos Religiosos para</span>
+            <span className="gsap-title-line block text-gradient-azul">nutrir a sua fé</span>
           </h1>
-          <p className="text-texto-suave text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="gsap-hero-sub text-texto-suave text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
             Terços, bíblias, imagens sacras, decoração e muito mais. Escolha com calma e finalize sua compra pelo WhatsApp com atendimento humanizado.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="gsap-hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/produtos"
               className="inline-flex items-center gap-2 bg-ouro hover:bg-terroso text-white px-8 py-4 rounded-full font-medium text-lg transition-colors duration-200 shadow-lg shadow-blue-600/30"
@@ -103,7 +108,7 @@ export default async function HomePage() {
       {/* Categorias */}
       {categorias.length > 0 && (
         <section className="py-20 px-4 max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="gsap-fade-up text-center mb-12">
             <h2 className="font-serif text-3xl md:text-4xl text-texto mb-3">
               Explore por Categoria
             </h2>
@@ -111,14 +116,14 @@ export default async function HomePage() {
               Encontre exatamente o que procura
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="gsap-stagger grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {categorias.map((cat) => {
               const Icone = iconesCategorias[cat.slug] ?? iconesCategorias.default;
               return (
                 <Link
                   key={cat.id}
                   href={`/produtos?categoria=${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-ouro/20 hover:border-dourado/60 hover:shadow-md hover:shadow-dourado/10 transition-all duration-200 hover-lift"
+                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-ouro/20 hover:border-dourado/60 hover:shadow-md hover:shadow-dourado/10 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:translate-x-1 hover:-rotate-1"
                 >
                   <div className="w-16 h-16 rounded-full bg-bege group-hover:bg-ouro-suave/50 flex items-center justify-center overflow-hidden relative">
                     {cat.imagemUrl ? (
@@ -141,7 +146,7 @@ export default async function HomePage() {
       {destaques.length > 0 && (
         <section className="py-20 px-4 bg-bege">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="gsap-fade-up text-center mb-12">
               <h2 className="font-serif text-3xl md:text-4xl text-texto mb-3">
                 Mais Procurados
               </h2>
@@ -149,7 +154,7 @@ export default async function HomePage() {
                 Os produtos favoritos dos nossos clientes
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {destaques.map((produto) => (
                 <ProdutoCard
                   key={produto.id}
@@ -161,7 +166,7 @@ export default async function HomePage() {
                 />
               ))}
             </div>
-            <div className="text-center mt-10">
+            <div className="gsap-fade-up text-center mt-10">
               <Link
                 href="/produtos"
                 className="inline-flex items-center gap-2 border-2 border-ouro text-ouro hover:bg-ouro hover:text-white px-8 py-3 rounded-full font-medium transition-colors duration-200"
@@ -177,13 +182,13 @@ export default async function HomePage() {
       {/* Como funciona */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-texto mb-3">
+          <h2 className="gsap-fade-up font-serif text-3xl md:text-4xl text-texto mb-3">
             Como Funciona
           </h2>
-          <p className="text-texto-suave mb-14">
+          <p className="gsap-fade-up text-texto-suave mb-14">
             Simples, rápido e com atendimento humano
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="gsap-stagger grid grid-cols-1 md:grid-cols-3 gap-8">
             {passos.map((passo) => (
               <div key={passo.num} className="flex flex-col items-center gap-4 p-6">
                 <div className="w-16 h-16 rounded-full bg-linear-to-br from-ouro to-terroso flex items-center justify-center text-white font-serif text-2xl font-bold shadow-lg">
@@ -202,7 +207,7 @@ export default async function HomePage() {
 
       {/* Bloco de confiança */}
       <section className="py-16 px-4 bg-linear-to-r from-texto to-terroso text-white">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="gsap-scale-up max-w-3xl mx-auto text-center">
           <div className="text-4xl mb-4 select-none text-dourado">✦</div>
           <h2 className="font-serif text-2xl md:text-3xl mb-4 text-ouro-suave">
             Atendimento com coração

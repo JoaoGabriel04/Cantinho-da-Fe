@@ -66,7 +66,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Galeria */}
-        <div>
+        <div className="gsap-slide-left">
           <div className="relative aspect-square bg-bege rounded-2xl overflow-hidden mb-4">
             {imagens[imagemAtiva] ? (
               <Image
@@ -105,7 +105,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
         </div>
 
         {/* Informações */}
-        <div className="flex flex-col">
+        <div className="gsap-slide-right flex flex-col">
           <div className="mb-3">
             <StatusSelo status={produto.status} tamanho="md" />
           </div>
@@ -199,7 +199,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
           <h2 className="font-serif text-2xl text-texto mb-8">
             Você também pode gostar
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relacionados.map((p) => (
               <ProdutoCard key={p.id} produto={p} />
             ))}

@@ -13,12 +13,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Nenhum arquivo enviado" }, { status: 400 });
   }
 
-  const urls = await Promise.all(
-    files.map(async (file) => {
-      const buffer = Buffer.from(await file.arrayBuffer());
-      return uploadImagem(buffer);
-    })
-  );
+  const urls: string[] = [];
+  for (const file of files) {
+    const buffer = Buffer.from(await file.arrayBuffer());
+    urls.push(await uploadImagem(buffer, file.type));
+  }
 
   return NextResponse.json({ urls });
 }

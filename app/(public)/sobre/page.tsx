@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="text-center mb-16">
+      <div className="gsap-fade-up text-center mb-16">
         <p className="text-dourado font-medium tracking-widest uppercase text-sm mb-3">
           ✦ Nossa história ✦
         </p>
@@ -23,7 +23,7 @@ export default function SobrePage() {
       </div>
 
       <div className="prose prose-lg max-w-none">
-        <div className="bg-white rounded-2xl p-8 md:p-12 border border-ouro/10 shadow-sm mb-8">
+        <div className="gsap-slide-left bg-white rounded-2xl p-8 md:p-12 border border-ouro/10 shadow-sm mb-8">
           <h2 className="font-serif text-2xl text-texto mb-4">Nossa missão</h2>
           <p className="text-texto-suave leading-relaxed mb-4">
             O Cantinho da Fé nasceu da vontade de oferecer artigos religiosos de qualidade com um atendimento diferenciado, humano e carinhoso. Acreditamos que cada produto que vendemos carrega um significado especial e merece ser escolhido com cuidado.
@@ -33,7 +33,7 @@ export default function SobrePage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="gsap-stagger grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {(
             [
               { titulo: "Qualidade", desc: "Selecionamos cada produto com atenção e cuidado para garantir o melhor para você.", Icone: Star },
@@ -52,7 +52,7 @@ export default function SobrePage() {
           ))}
         </div>
 
-        <div className="bg-texto text-white rounded-2xl p-8 md:p-12 text-center">
+        <div className="gsap-scale-up bg-texto text-white rounded-2xl p-8 md:p-12 text-center">
           <h2 className="font-serif text-2xl text-ouro-suave mb-4">Fale conosco</h2>
           <div className="space-y-3 text-white/80 mb-8">
             <p><strong className="text-white">Horário de atendimento</strong></p>
