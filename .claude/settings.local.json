@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Move-Item *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Projetos\\\\SitesClaude\\\\site-cantinho\" -Recurse | Where-Object { !$_.PSIsContainer -and $_.FullName -notmatch 'node_modules|\\\\.next|\\\\.git|generated' } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Projetos\\\\SitesClaude\\\\site-cantinho\" -Recurse | Where-Object { !$_.PSIsContainer -and $_.FullName -notmatch 'node_modules|\\\\.next|\\\\.git|generated|package-lock' } | Select-Object FullName | Sort-Object FullName)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git rm *)"
+    ]
+  }
+}

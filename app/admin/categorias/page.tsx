@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { Tag, Plus } from "lucide-react";
 
 export default async function AdminCategoriasPage() {
   const categorias = await prisma.categoria.findMany({
@@ -18,9 +19,7 @@ export default async function AdminCategoriasPage() {
           href="/admin/categorias/nova"
           className="flex items-center gap-2 bg-[var(--color-ouro)] hover:bg-[var(--color-terroso)] text-white px-5 py-2.5 rounded-xl font-medium transition-colors text-sm"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
+          <Plus className="w-4 h-4" />
           Nova categoria
         </Link>
       </div>
@@ -32,7 +31,9 @@ export default async function AdminCategoriasPage() {
               {cat.imagemUrl ? (
                 <img src={cat.imagemUrl} alt={cat.nome} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-2xl">🏷️</div>
+                <div className="w-full h-full flex items-center justify-center">
+                  <Tag className="w-6 h-6 text-[var(--color-ouro)]/60" />
+                </div>
               )}
             </div>
             <div className="flex-1 min-w-0">
@@ -51,8 +52,8 @@ export default async function AdminCategoriasPage() {
         ))}
 
         {categorias.length === 0 && (
-          <div className="col-span-full text-center py-16 text-[var(--color-texto-suave)] bg-white rounded-2xl border border-gray-100">
-            <div className="text-4xl mb-3">🏷️</div>
+          <div className="col-span-full flex flex-col items-center py-16 text-[var(--color-texto-suave)] bg-white rounded-2xl border border-gray-100 gap-3">
+            <Tag className="w-10 h-10 opacity-30" />
             <p>Nenhuma categoria cadastrada ainda.</p>
           </div>
         )}

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { Package, CheckCircle, XCircle, Tag, Plus } from "lucide-react";
 
 async function getStats() {
   const [total, disponiveis, esgotados, categorias] = await Promise.all([
@@ -20,7 +21,8 @@ export default async function AdminDashboard() {
       valor: stats.total,
       cor: "bg-blue-50 border-blue-200",
       corValor: "text-blue-700",
-      icone: "📦",
+      Icone: Package,
+      corIcone: "text-blue-400",
       href: "/admin/produtos",
     },
     {
@@ -28,7 +30,8 @@ export default async function AdminDashboard() {
       valor: stats.disponiveis,
       cor: "bg-green-50 border-green-200",
       corValor: "text-green-700",
-      icone: "✅",
+      Icone: CheckCircle,
+      corIcone: "text-green-400",
       href: "/admin/produtos?status=DISPONIVEL",
     },
     {
@@ -36,7 +39,8 @@ export default async function AdminDashboard() {
       valor: stats.esgotados,
       cor: "bg-red-50 border-red-200",
       corValor: "text-red-700",
-      icone: "❌",
+      Icone: XCircle,
+      corIcone: "text-red-400",
       href: "/admin/produtos?status=ESGOTADO",
     },
     {
@@ -44,7 +48,8 @@ export default async function AdminDashboard() {
       valor: stats.categorias,
       cor: "bg-amber-50 border-amber-200",
       corValor: "text-amber-700",
-      icone: "🏷️",
+      Icone: Tag,
+      corIcone: "text-amber-400",
       href: "/admin/categorias",
     },
   ];
@@ -63,7 +68,7 @@ export default async function AdminDashboard() {
             href={card.href}
             className={`p-6 rounded-2xl border ${card.cor} hover:shadow-md transition-all hover-lift`}
           >
-            <div className="text-3xl mb-3">{card.icone}</div>
+            <card.Icone className={`w-8 h-8 mb-3 ${card.corIcone}`} />
             <p className={`text-4xl font-bold mb-1 ${card.corValor}`}>{card.valor}</p>
             <p className="text-sm text-[var(--color-texto-suave)]">{card.titulo}</p>
           </Link>
@@ -78,17 +83,17 @@ export default async function AdminDashboard() {
               href="/admin/produtos/novo"
               className="flex items-center gap-3 p-4 bg-[var(--color-bege)] rounded-xl hover:bg-[var(--color-ouro)]/10 transition-colors"
             >
-              <span className="text-2xl">➕</span>
+              <Plus className="w-6 h-6 text-[var(--color-ouro)] flex-shrink-0" />
               <div>
                 <p className="font-medium text-sm text-[var(--color-texto)]">Novo produto</p>
-                <p className="text-xs text-[var(--color-texto-suave)]">Cadastrar um produto novo no catálogo</p>
+                <p className="text-xs text-[var(--color-texto-suave)]">Cadastrar um produto no catálogo</p>
               </div>
             </Link>
             <Link
               href="/admin/categorias/nova"
               className="flex items-center gap-3 p-4 bg-[var(--color-bege)] rounded-xl hover:bg-[var(--color-ouro)]/10 transition-colors"
             >
-              <span className="text-2xl">🏷️</span>
+              <Tag className="w-6 h-6 text-[var(--color-ouro)] flex-shrink-0" />
               <div>
                 <p className="font-medium text-sm text-[var(--color-texto)]">Nova categoria</p>
                 <p className="text-xs text-[var(--color-texto-suave)]">Criar uma nova categoria de produtos</p>
@@ -105,7 +110,11 @@ export default async function AdminDashboard() {
               <div className="flex items-center gap-2">
                 <div
                   className="h-2 bg-green-400 rounded-full"
-                  style={{ width: `${stats.total > 0 ? (stats.disponiveis / stats.total) * 120 : 0}px`, minWidth: "8px", maxWidth: "120px" }}
+                  style={{
+                    width: `${stats.total > 0 ? (stats.disponiveis / stats.total) * 120 : 0}px`,
+                    minWidth: "8px",
+                    maxWidth: "120px",
+                  }}
                 />
                 <span className="text-sm font-medium text-green-700">{stats.disponiveis}</span>
               </div>
@@ -115,7 +124,11 @@ export default async function AdminDashboard() {
               <div className="flex items-center gap-2">
                 <div
                   className="h-2 bg-red-400 rounded-full"
-                  style={{ width: `${stats.total > 0 ? (stats.esgotados / stats.total) * 120 : 0}px`, minWidth: "8px", maxWidth: "120px" }}
+                  style={{
+                    width: `${stats.total > 0 ? (stats.esgotados / stats.total) * 120 : 0}px`,
+                    minWidth: "8px",
+                    maxWidth: "120px",
+                  }}
                 />
                 <span className="text-sm font-medium text-red-700">{stats.esgotados}</span>
               </div>

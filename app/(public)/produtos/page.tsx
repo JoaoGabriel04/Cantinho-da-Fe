@@ -148,7 +148,7 @@ export default async function CatalogoPage({
         <div className="flex-1">
           {produtos.length === 0 ? (
             <div className="text-center py-20 text-[var(--color-texto-suave)]">
-              <div className="text-5xl mb-4">🔍</div>
+              <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
               <p className="text-lg font-medium mb-2">Nenhum produto encontrado</p>
               <p className="text-sm">Tente outros filtros ou termos de busca.</p>
             </div>

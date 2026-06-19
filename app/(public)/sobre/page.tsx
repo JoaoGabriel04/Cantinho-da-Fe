@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Star, MessageCircle, Layers, ShieldCheck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Sobre Nós",
@@ -32,14 +34,16 @@ export default function SobrePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {[
-            { titulo: "Qualidade", desc: "Selecionamos cada produto com atenção e cuidado para garantir o melhor para você.", icone: "⭐" },
-            { titulo: "Atendimento", desc: "Estamos sempre disponíveis para ajudar você a encontrar o produto ideal.", icone: "💬" },
-            { titulo: "Variedade", desc: "Terços, bíblias, imagens, decoração e muito mais para toda a família.", icone: "🕊️" },
-            { titulo: "Confiança", desc: "Transparência e honestidade em cada venda, do início ao fim.", icone: "🤝" },
-          ].map((item) => (
+          {(
+            [
+              { titulo: "Qualidade", desc: "Selecionamos cada produto com atenção e cuidado para garantir o melhor para você.", Icone: Star },
+              { titulo: "Atendimento", desc: "Estamos sempre disponíveis para ajudar você a encontrar o produto ideal.", Icone: MessageCircle },
+              { titulo: "Variedade", desc: "Terços, bíblias, imagens, decoração e muito mais para toda a família.", Icone: Layers },
+              { titulo: "Confiança", desc: "Transparência e honestidade em cada venda, do início ao fim.", Icone: ShieldCheck },
+            ] as { titulo: string; desc: string; Icone: LucideIcon }[]
+          ).map((item) => (
             <div key={item.titulo} className="flex gap-4 p-6 bg-[var(--color-bege)] rounded-xl">
-              <span className="text-3xl flex-shrink-0">{item.icone}</span>
+              <item.Icone className="w-7 h-7 text-[var(--color-ouro)] flex-shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-semibold text-[var(--color-texto)] mb-1">{item.titulo}</h3>
                 <p className="text-sm text-[var(--color-texto-suave)]">{item.desc}</p>

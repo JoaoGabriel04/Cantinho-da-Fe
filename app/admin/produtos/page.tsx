@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { Plus, Package } from "lucide-react";
 import { AlternarStatusBotao } from "@/components/admin/AlternarStatusBotao";
 
 interface SearchParams {
@@ -38,9 +39,7 @@ export default async function AdminProdutosPage({
           href="/admin/produtos/novo"
           className="flex items-center gap-2 bg-[var(--color-ouro)] hover:bg-[var(--color-terroso)] text-white px-5 py-2.5 rounded-xl font-medium transition-colors text-sm"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
+          <Plus className="w-4 h-4" />
           Novo produto
         </Link>
       </div>
@@ -89,8 +88,8 @@ export default async function AdminProdutosPage({
       {/* Tabela */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         {produtos.length === 0 ? (
-          <div className="text-center py-16 text-[var(--color-texto-suave)]">
-            <div className="text-4xl mb-3">📦</div>
+          <div className="flex flex-col items-center py-16 text-[var(--color-texto-suave)] gap-3">
+            <Package className="w-10 h-10 opacity-30" />
             <p>Nenhum produto encontrado.</p>
           </div>
         ) : (

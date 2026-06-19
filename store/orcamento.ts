@@ -14,6 +14,9 @@ export interface ItemOrcamento {
 
 interface OrcamentoStore {
   itens: ItemOrcamento[];
+  drawerAberto: boolean;
+  abrirDrawer: () => void;
+  fecharDrawer: () => void;
   adicionarItem: (item: Omit<ItemOrcamento, "quantidade">, quantidade?: number) => void;
   removerItem: (produtoId: string) => void;
   atualizarQuantidade: (produtoId: string, quantidade: number) => void;
@@ -25,11 +28,14 @@ export const useOrcamento = create<OrcamentoStore>()(
   persist(
     (set, get) => ({
       itens: [],
+      drawerAberto: false,
+
+      abrirDrawer: () => set({ drawerAberto: true }),
+      fecharDrawer: () => set({ drawerAberto: false }),
 
       adicionarItem: (item, quantidade = 1) => {
         const { itens } = get();
         const existente = itens.find((i) => i.produtoId === item.produtoId);
-
         if (existente) {
           set({
             itens: itens.map((i) =>
@@ -65,6 +71,7 @@ export const useOrcamento = create<OrcamentoStore>()(
     }),
     {
       name: "cantinho-orcamento",
+      partialize: (state) => ({ itens: state.itens }),
     }
   )
 );
