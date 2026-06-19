@@ -29,6 +29,7 @@ export default async function EditarProdutoPage({ params }: Props) {
         produto={{
           ...produto,
           preco: Number(produto.preco),
+          quantidade: produto.quantidade,
         }}
       />
     </div>

@@ -20,6 +20,7 @@ interface Produto {
   nome: string;
   descricao: string;
   preco: number;
+  quantidade: number;
   categoriaId: string;
   status: "DISPONIVEL" | "ESGOTADO";
   destaque: boolean;
@@ -39,6 +40,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
   const [nome, setNome] = useState(produto?.nome ?? "");
   const [descricao, setDescricao] = useState(produto?.descricao ?? "");
   const [preco, setPreco] = useState(produto?.preco?.toString() ?? "");
+  const [quantidade, setQuantidade] = useState(produto?.quantidade ?? 0);
   const [categoriaId, setCategoriaId] = useState(produto?.categoriaId ?? "");
   const [status, setStatus] = useState<"DISPONIVEL" | "ESGOTADO">(produto?.status ?? "DISPONIVEL");
   const [destaque, setDestaque] = useState(produto?.destaque ?? false);
@@ -83,7 +85,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
     }
 
     setSalvando(true);
-    const body = { nome, descricao, preco: parseFloat(preco), categoriaId, status, destaque, ativo, imagens };
+    const body = { nome, descricao, preco: parseFloat(preco), quantidade, categoriaId, status, destaque, ativo, imagens };
 
     const res = editando
       ? await fetch(`/api/produtos/${produto!.id}`, {
@@ -258,6 +260,45 @@ export function ProdutoForm({ categorias, produto }: Props) {
           </div>
         </div>
 
+        <div>
+          <label className="block text-sm font-medium text-texto mb-1.5">
+            Quantidade em estoque
+          </label>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden w-36">
+              <button
+                type="button"
+                onClick={() => setQuantidade(Math.max(0, quantidade - 1))}
+                className="px-4 py-3 text-texto-suave hover:bg-gray-50 transition-colors font-bold text-lg leading-none"
+              >
+                −
+              </button>
+              <input
+                type="number"
+                value={quantidade}
+                onChange={(e) => setQuantidade(Math.max(0, parseInt(e.target.value) || 0))}
+                min="0"
+                step="1"
+                className="w-full text-center text-sm font-medium text-texto focus:outline-none py-3 bg-transparent"
+              />
+              <button
+                type="button"
+                onClick={() => setQuantidade(quantidade + 1)}
+                className="px-4 py-3 text-texto-suave hover:bg-gray-50 transition-colors font-bold text-lg leading-none"
+              >
+                +
+              </button>
+            </div>
+            <span className="text-sm text-texto-suave">
+              {quantidade === 0
+                ? "Sem estoque"
+                : quantidade === 1
+                ? "1 unidade"
+                : `${quantidade} unidades`}
+            </span>
+          </div>
+        </div>
+
         <div className="flex items-center gap-6">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
@@ -291,7 +332,7 @@ export function ProdutoForm({ categorias, produto }: Props) {
         </button>
         <button
           type="button"
-          onClick={() => router.back()}
+          onClick={() => router.push("/admin/produtos")}
           className="px-5 py-3 border border-gray-200 rounded-xl text-sm text-texto-suave hover:bg-gray-50 transition-colors"
         >
           Cancelar

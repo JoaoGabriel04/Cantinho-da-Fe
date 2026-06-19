@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
   if (!session) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
 
   const body = await request.json();
-  const { nome, descricao, preco, categoriaId, status, destaque, ativo, imagens } = body;
+  const { nome, descricao, preco, quantidade, categoriaId, status, destaque, ativo, imagens } = body;
 
   if (!nome || !descricao || !preco || !categoriaId) {
     return NextResponse.json({ error: "Campos obrigatórios ausentes" }, { status: 400 });
@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
       preco,
       categoriaId,
       status: status ?? "DISPONIVEL",
+      quantidade: quantidade ?? 0,
       destaque: destaque ?? false,
       ativo: ativo ?? true,
       imagens: imagens?.length

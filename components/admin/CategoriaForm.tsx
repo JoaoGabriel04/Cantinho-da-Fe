@@ -147,7 +147,7 @@ export function CategoriaForm({ categoria }: Props) {
         </button>
         <button
           type="button"
-          onClick={() => router.back()}
+          onClick={() => router.push("/admin/categorias")}
           className="px-5 py-3 border border-gray-200 rounded-xl text-sm text-texto-suave hover:bg-gray-50 transition-colors"
         >
           Cancelar

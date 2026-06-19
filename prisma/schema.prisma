@@ -24,6 +24,7 @@ model Produto {
   descricao   String
   preco       Decimal       @db.Decimal(10, 2)
   status      StatusEstoque @default(DISPONIVEL)
+  quantidade  Int           @default(0)
   destaque    Boolean       @default(false)
   ativo       Boolean       @default(true)
   categoriaId String
