@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -92,6 +93,16 @@ export default function LoginPage() {
             {carregando ? "Entrando..." : "Entrar"}
           </button>
         </form>
+
+        <Link
+          href="/"
+          className="mt-6 flex items-center justify-center gap-1.5 text-sm text-texto-suave hover:text-ouro transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Voltar ao site
+        </Link>
       </div>
     </div>
   );
