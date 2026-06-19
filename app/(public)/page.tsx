@@ -4,6 +4,8 @@ import { Search, ClipboardList, MessageCircle, Tag, BookOpen, Layers, Sparkles, 
 import { prisma } from "@/lib/prisma";
 import { ProdutoCard } from "@/components/produto/ProdutoCard";
 
+export const dynamic = "force-dynamic";
+
 async function getDados() {
   const [categorias, destaques] = await Promise.all([
     prisma.categoria.findMany({ orderBy: { nome: "asc" } }),

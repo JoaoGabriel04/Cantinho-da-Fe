@@ -3,6 +3,8 @@ import { ProdutoCard } from "@/components/produto/ProdutoCard";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Catálogo de Produtos",
   description: "Explore nosso catálogo completo de artigos religiosos. Terços, bíblias, imagens, decoração e muito mais.",
