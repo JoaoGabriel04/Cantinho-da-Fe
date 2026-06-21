@@ -25,7 +25,7 @@
   --color-texto: #0a1930;
   --color-texto-suave: #4a607c;
 
-  --font-serif: var(--font-playfair);
+  --font-serif: var(--font-lora);
   --font-sans: var(--font-inter);
 }
 

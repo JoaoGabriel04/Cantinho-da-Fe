@@ -156,7 +156,7 @@ export default async function CatalogoPage({
             </div>
           ) : (
             <>
-              <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="gsap-stagger grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
                 {produtos.map((produto) => (
                   <ProdutoCard
                     key={produto.id}

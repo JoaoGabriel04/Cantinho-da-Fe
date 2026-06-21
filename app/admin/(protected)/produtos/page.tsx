@@ -94,7 +94,7 @@ export default async function AdminProdutosPage({
             <p>Nenhum produto encontrado.</p>
           </div>
         ) : (
-          <table className="min-w-[600px] w-full text-sm">
+          <table className="min-w-150 w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <th className="text-left px-5 py-3 font-medium text-texto-suave">Produto</th>

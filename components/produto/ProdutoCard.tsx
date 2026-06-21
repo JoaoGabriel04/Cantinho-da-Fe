@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { StatusSelo } from "./StatusSelo";
+import MarqueeText from "./MarqueeText";
 import { useOrcamento } from "@/store/orcamento";
 
 interface Produto {
@@ -68,18 +69,18 @@ export function ProdutoCard({ produto }: Props) {
 
         {/* Info */}
         <div className="p-4">
-          <p className="text-xs text-texto-suave mb-1">#{produto.codigo}</p>
-          <h3 className="font-medium text-texto mb-2 leading-snug line-clamp-2">
+          <p className="text-[9px] text-texto-suave mb-1">#{produto.codigo}</p>
+          <MarqueeText className="font-medium text-texto mb-2 leading-snug">
             {produto.nome}
-          </h3>
+          </MarqueeText>
           <div className="flex items-center justify-between gap-2">
-            <span className="text-lg font-bold text-ouro">
+            <span className="text-base font-bold text-ouro">
               R$ {produto.preco.toFixed(2).replace(".", ",")}
             </span>
             {disponivel && (
               <button
                 onClick={handleAdicionar}
-                className={`flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full cursor-pointer transition-all duration-200 ${
+                className={`flex items-center gap-1.5 text-[10px] font-medium px-3 py-1.5 rounded-full cursor-pointer transition-all duration-200 ${
                   adicionado
                     ? "bg-green-500 text-white"
                     : "bg-dourado-claro text-dourado hover:bg-dourado hover:text-white border border-dourado/40"
@@ -87,17 +88,17 @@ export function ProdutoCard({ produto }: Props) {
               >
                 {adicionado ? (
                   <>
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Adicionado
+                    <span className="hidden md:flex">Adicionado</span>
                   </>
                 ) : (
                   <>
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                     </svg>
-                    Adicionar
+                    <span className="hidden md:flex">Adicionar</span>
                   </>
                 )}
               </button>
