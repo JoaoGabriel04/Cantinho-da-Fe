@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { Menu, X } from "lucide-react";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
 
 const links = [
   { href: "/admin", label: "Dashboard" },
@@ -41,6 +42,7 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
 
 export function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   const [menuAberto, setMenuAberto] = useState(false);
+  const vh = useViewportHeight();
 
   return (
     <>
@@ -81,15 +83,15 @@ export function AdminLayoutContent({ children }: { children: React.ReactNode }) 
       )}
 
       {/* Desktop sidebar */}
-      <aside className="w-64 bg-texto text-white shrink-0 hidden lg:flex flex-col min-h-screen">
-        <div className="p-6 border-b border-white/10">
+      <aside className="w-64 bg-texto text-white shrink-0 hidden lg:flex flex-col sticky top-0" style={{ height: vh }}>
+        <div className="p-6 border-b border-white/10 shrink-0">
           <h1 className="font-serif text-lg text-ouro-suave">✦ Cantinho da Fé</h1>
           <p className="text-xs text-white/40 mt-1">Painel Admin</p>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           <NavLinks />
         </nav>
-        <div className="p-4 border-t border-white/10 space-y-2">
+        <div className="p-4 border-t border-white/10 space-y-2 shrink-0">
           <Link
             href="/"
             className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 hover:bg-white/10 hover:text-white transition-all text-sm"
@@ -112,7 +114,7 @@ export function AdminLayoutContent({ children }: { children: React.ReactNode }) 
       </aside>
 
       {/* Main content */}
-      <main className={`flex-1 pt-14 lg:pt-2 p-4 lg:p-8 overflow-auto ${menuAberto ? "hidden lg:block" : ""}`}>
+      <main className={`flex-1 pt-14 lg:pt-0 p-4 lg:p-8 overflow-auto ${menuAberto ? "hidden lg:block" : ""}`}>
         {children}
       </main>
     </>
