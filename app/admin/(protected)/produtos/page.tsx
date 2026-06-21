@@ -1,4 +1,5 @@
-﻿import { prisma } from "@/lib/prisma";
+﻿import Image from "next/image";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Plus, Package } from "lucide-react";
 import { AlternarStatusBotao } from "@/components/admin/AlternarStatusBotao";
@@ -86,14 +87,14 @@ export default async function AdminProdutosPage({
       </form>
 
       {/* Tabela */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-x-auto">
         {produtos.length === 0 ? (
           <div className="flex flex-col items-center py-16 text-texto-suave gap-3">
             <Package className="w-10 h-10 opacity-30" />
             <p>Nenhum produto encontrado.</p>
           </div>
         ) : (
-          <table className="w-full text-sm">
+          <table className="min-w-[600px] w-full text-sm">
             <thead className="bg-gray-50 border-b border-gray-100">
               <tr>
                 <th className="text-left px-5 py-3 font-medium text-texto-suave">Produto</th>
@@ -108,12 +109,14 @@ export default async function AdminProdutosPage({
                 <tr key={produto.id} className="hover:bg-gray-50/50 transition-colors">
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-bege overflow-hidden flex-shrink-0">
+                      <div className="relative w-10 h-10 rounded-lg bg-bege overflow-hidden shrink-0">
                         {produto.imagens[0] && (
-                          <img
+                          <Image
                             src={produto.imagens[0].url}
                             alt={produto.nome}
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="40px"
+                            className="object-cover"
                           />
                         )}
                       </div>

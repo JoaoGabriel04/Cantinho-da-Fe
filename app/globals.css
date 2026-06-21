@@ -7,6 +7,7 @@
   /* Dourado — traço de ouro para ornamentos, sombras e detalhes */
   --color-dourado: #c8a020;
   --color-ouro-suave: #f0d898; /* dourado suave p/ texto em fundo escuro */
+  --color-dourado-claro: #fff8de;
 
   /* Fundos: branco e branco-azulado */
   --color-creme: #ffffff;
@@ -34,7 +35,7 @@
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 

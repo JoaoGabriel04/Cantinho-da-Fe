@@ -1,15 +1,16 @@
 ﻿import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { Package, CheckCircle, XCircle, Tag, Plus } from "lucide-react";
+import { Package, CheckCircle, XCircle, Tag, Plus, ShoppingBag } from "lucide-react";
 
 async function getStats() {
-  const [total, disponiveis, esgotados, categorias] = await Promise.all([
+  const [total, disponiveis, esgotados, categorias, pedidosPendentes] = await Promise.all([
     prisma.produto.count({ where: { ativo: true } }),
     prisma.produto.count({ where: { ativo: true, status: "DISPONIVEL" } }),
     prisma.produto.count({ where: { ativo: true, status: "ESGOTADO" } }),
     prisma.categoria.count(),
+    prisma.pedido.count({ where: { status: "PENDENTE" } }),
   ]);
-  return { total, disponiveis, esgotados, categorias };
+  return { total, disponiveis, esgotados, categorias, pedidosPendentes };
 }
 
 export default async function AdminDashboard() {
@@ -52,6 +53,15 @@ export default async function AdminDashboard() {
       corIcone: "text-amber-400",
       href: "/admin/categorias",
     },
+    {
+      titulo: "Pedidos Pendentes",
+      valor: stats.pedidosPendentes,
+      cor: "bg-purple-50 border-purple-200",
+      corValor: "text-purple-700",
+      Icone: ShoppingBag,
+      corIcone: "text-purple-400",
+      href: "/admin/pedidos?status=PENDENTE",
+    },
   ];
 
   return (
@@ -83,7 +93,7 @@ export default async function AdminDashboard() {
               href="/admin/produtos/novo"
               className="flex items-center gap-3 p-4 bg-bege rounded-xl hover:bg-ouro/10 transition-colors"
             >
-              <Plus className="w-6 h-6 text-ouro flex-shrink-0" />
+              <Plus className="w-6 h-6 text-ouro shrink-0" />
               <div>
                 <p className="font-medium text-sm text-texto">Novo produto</p>
                 <p className="text-xs text-texto-suave">Cadastrar um produto no catálogo</p>
@@ -93,10 +103,20 @@ export default async function AdminDashboard() {
               href="/admin/categorias/nova"
               className="flex items-center gap-3 p-4 bg-bege rounded-xl hover:bg-ouro/10 transition-colors"
             >
-              <Tag className="w-6 h-6 text-ouro flex-shrink-0" />
+              <Tag className="w-6 h-6 text-ouro shrink-0" />
               <div>
                 <p className="font-medium text-sm text-texto">Nova categoria</p>
                 <p className="text-xs text-texto-suave">Criar uma nova categoria de produtos</p>
+              </div>
+            </Link>
+            <Link
+              href="/admin/pedidos"
+              className="flex items-center gap-3 p-4 bg-bege rounded-xl hover:bg-ouro/10 transition-colors"
+            >
+              <ShoppingBag className="w-6 h-6 text-ouro shrink-0" />
+              <div>
+                <p className="font-medium text-sm text-texto">Ver pedidos</p>
+                <p className="text-xs text-texto-suave">Gerenciar pedidos dos clientes</p>
               </div>
             </Link>
           </div>

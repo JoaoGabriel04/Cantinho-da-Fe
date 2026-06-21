@@ -1,4 +1,5 @@
-﻿import { prisma } from "@/lib/prisma";
+﻿import Image from "next/image";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Tag, Plus } from "lucide-react";
 
@@ -27,9 +28,9 @@ export default async function AdminCategoriasPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {categorias.map((cat) => (
           <div key={cat.id} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-bege overflow-hidden flex-shrink-0">
+            <div className="relative w-14 h-14 rounded-xl bg-bege overflow-hidden shrink-0">
               {cat.imagemUrl ? (
-                <img src={cat.imagemUrl} alt={cat.nome} className="w-full h-full object-cover" />
+                <Image src={cat.imagemUrl} alt={cat.nome} fill sizes="56px" className="object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
                   <Tag className="w-6 h-6 text-ouro/60" />
@@ -44,7 +45,7 @@ export default async function AdminCategoriasPage() {
             </div>
             <Link
               href={`/admin/categorias/${cat.id}`}
-              className="text-sm text-ouro hover:text-terroso font-medium transition-colors flex-shrink-0"
+              className="text-sm text-ouro hover:text-terroso font-medium transition-colors shrink-0"
             >
               Editar
             </Link>

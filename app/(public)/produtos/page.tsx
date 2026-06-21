@@ -68,7 +68,7 @@ export default async function CatalogoPage({
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filtros */}
-        <aside className="lg:w-64 flex-shrink-0">
+        <aside className="lg:w-64 shrink-0">
           <div className="bg-white rounded-2xl p-5 border border-ouro/10 shadow-sm sticky top-24">
             <h2 className="font-semibold text-texto mb-4">Filtros</h2>
 
@@ -89,7 +89,7 @@ export default async function CatalogoPage({
                 />
                 <button
                   type="submit"
-                  className="flex-shrink-0 bg-ouro text-white px-3 py-2 rounded-lg text-sm hover:bg-terroso transition-colors"
+                  className="shrink-0 bg-ouro text-white px-3 py-2 rounded-lg text-sm hover:bg-terroso transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

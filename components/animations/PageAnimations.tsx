@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
@@ -10,18 +11,48 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export function PageAnimations() {
   const pathname = usePathname();
 
+  // ── Recalcula ScrollTrigger em eventos que podem desatualizar posições ──
+  useEffect(() => {
+    let pendingRaf = 0;
+
+    const scheduleRefresh = () => {
+      cancelAnimationFrame(pendingRaf);
+      pendingRaf = requestAnimationFrame(() => ScrollTrigger.refresh());
+    };
+
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) scheduleRefresh();
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") scheduleRefresh();
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+    window.addEventListener("resize", scheduleRefresh);
+    window.addEventListener("popstate", scheduleRefresh);
+    document.addEventListener("visibilitychange", handleVisibility);
+    // one-time: fontes podem mudar o layout após o primeiro render
+    document.fonts?.ready?.then(scheduleRefresh);
+
+    return () => {
+      cancelAnimationFrame(pendingRaf);
+      window.removeEventListener("pageshow", handlePageShow);
+      window.removeEventListener("resize", scheduleRefresh);
+      window.removeEventListener("popstate", scheduleRefresh);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
+
   useGSAP(
     () => {
       if (typeof window === "undefined") return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      ScrollTrigger.refresh();
-
       // ── Hero entrance (no scroll trigger) ───────────────────────────
       const heroLabel = document.querySelector<HTMLElement>(".gsap-hero-label");
       const heroTitle = document.querySelector<HTMLElement>(".gsap-hero-title");
-      const heroSub   = document.querySelector<HTMLElement>(".gsap-hero-sub");
-      const heroCta   = document.querySelector<HTMLElement>(".gsap-hero-cta");
+      const heroSub = document.querySelector<HTMLElement>(".gsap-hero-sub");
+      const heroCta = document.querySelector<HTMLElement>(".gsap-hero-cta");
 
       if (heroLabel || heroTitle) {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -44,7 +75,7 @@ export function PageAnimations() {
       // ── Spin nos ornamentos ✦ do hero ───────────────────────────────
       gsap.utils.toArray<HTMLElement>(".hero-sparkle").forEach((el) => {
         const duration = Number(el.dataset.duration ?? 10);
-        const delay    = Number(el.dataset.delay ?? 0);
+        const delay = Number(el.dataset.delay ?? 0);
         gsap.to(el, {
           rotation: 360,
           duration,
@@ -57,7 +88,7 @@ export function PageAnimations() {
 
       // ── Parallax nos ornamentos ✦ do hero ────────────────────────────
       const heroSection = document.querySelector<HTMLElement>(".gsap-hero");
-      const heroDecos   = gsap.utils.toArray<HTMLElement>(".gsap-hero-deco");
+      const heroDecos = gsap.utils.toArray<HTMLElement>(".gsap-hero-deco");
 
       if (heroSection && heroDecos.length) {
         gsap.to(heroDecos, {
@@ -68,6 +99,7 @@ export function PageAnimations() {
             start: "top top",
             end: "bottom top",
             scrub: 1.5,
+            invalidateOnRefresh: true,
           },
         });
       }
@@ -83,25 +115,53 @@ export function PageAnimations() {
         });
       });
 
-      // ── Stagger (ScrollTrigger individual por filho) ─────────────────
-      // Cada filho tem o próprio trigger — evita reverter o stagger antes
-      // de completar quando o container sai da viewport durante rolagem rápida.
+      // ── Categoria cards: scrub com x, y, rotation cascata ─────────────
+      gsap.utils.toArray<HTMLElement>(".gsap-categoria-cards").forEach((container) => {
+        const kids = Array.from(container.children) as HTMLElement[];
+        if (!kids.length) return;
+
+        gsap.set(kids, {
+          x: -40,
+          y: -40,
+          rotation: 45,
+          opacity: 0,
+        });
+
+        gsap.to(kids, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          opacity: 1,
+          stagger: 0.08,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 80%",
+            end: "bottom 80%",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+
+      // ── Stagger genérico: slide-up + fade one-shot ────────────────────
       gsap.utils.toArray<HTMLElement>(".gsap-stagger").forEach((container) => {
         const kids = Array.from(container.children) as HTMLElement[];
         if (!kids.length) return;
-        kids.forEach((kid, i) => {
-          gsap.from(kid, {
-            y: 40,
-            opacity: 0,
-            duration: 0.6,
-            delay: (i % 4) * 0.07,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: kid,
-              start: "top 92%",
-              once: true,
-            },
-          });
+
+        gsap.from(kids, {
+          y: 40,
+          opacity: 0,
+          duration: 0.65,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 80%",
+            end: "bottom 40%",
+            toggleActions: "play none none none",
+            scrub: 1,
+          },
         });
       });
 
@@ -137,6 +197,10 @@ export function PageAnimations() {
           scrollTrigger: { trigger: el, start: "top 82%" },
         });
       });
+
+      // ── Recalcula posições depois de criar todas as animações ─────────
+      ScrollTrigger.refresh();
+
     },
     { dependencies: [pathname], revertOnUpdate: true }
   );

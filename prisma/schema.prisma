@@ -30,6 +30,7 @@ model Produto {
   categoriaId String
   categoria   Categoria     @relation(fields: [categoriaId], references: [id])
   imagens     Imagem[]
+  pedidos     ItemPedido[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 }
@@ -51,4 +52,34 @@ model Admin {
   id    String @id @default(cuid())
   email String @unique
   senha String
+}
+
+enum StatusPedido {
+  PENDENTE
+  CONFIRMADO
+  CANCELADO
+}
+
+model Pedido {
+  id              String       @id @default(cuid())
+  codigo          String       @unique
+  clienteNome     String
+  clienteWhatsapp String
+  status          StatusPedido @default(PENDENTE)
+  total           Decimal      @default(0) @db.Decimal(10, 2)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  itens           ItemPedido[]
+}
+
+model ItemPedido {
+  id            String   @id @default(cuid())
+  pedidoId      String
+  pedido        Pedido   @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  produtoId     String
+  produto       Produto  @relation(fields: [produtoId], references: [id])
+  codigo        String
+  nome          String
+  quantidade    Int
+  precoUnitario Decimal  @db.Decimal(10, 2)
 }

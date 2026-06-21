@@ -12,15 +12,29 @@ export interface ItemOrcamento {
   quantidade: number;
 }
 
+export interface UltimoPedidoSalvo {
+  codigo: string;
+  total: number;
+  clienteWhatsapp: string;
+  criadoEm: string;
+}
+
+type EtapaDrawer = "lista" | "checkout" | "confirmacao";
+
 interface OrcamentoStore {
   itens: ItemOrcamento[];
   drawerAberto: boolean;
-  abrirDrawer: () => void;
+  etapa: EtapaDrawer;
+  ultimoPedido: UltimoPedidoSalvo | null;
+  abrirDrawer: (checkout?: boolean) => void;
   fecharDrawer: () => void;
+  setEtapa: (etapa: EtapaDrawer) => void;
   adicionarItem: (item: Omit<ItemOrcamento, "quantidade">, quantidade?: number) => void;
   removerItem: (produtoId: string) => void;
   atualizarQuantidade: (produtoId: string, quantidade: number) => void;
   limparOrcamento: () => void;
+  limparUltimoPedido: () => void;
+  salvarUltimoPedido: (pedido: UltimoPedidoSalvo) => void;
   totalItens: () => number;
 }
 
@@ -29,9 +43,12 @@ export const useOrcamento = create<OrcamentoStore>()(
     (set, get) => ({
       itens: [],
       drawerAberto: false,
+      etapa: "lista",
+      ultimoPedido: null,
 
-      abrirDrawer: () => set({ drawerAberto: true }),
-      fecharDrawer: () => set({ drawerAberto: false }),
+      abrirDrawer: (checkout = false) => set({ drawerAberto: true, etapa: checkout ? "checkout" : "lista" }),
+      fecharDrawer: () => set({ drawerAberto: false, etapa: "lista" }),
+      setEtapa: (etapa) => set({ etapa }),
 
       adicionarItem: (item, quantidade = 1) => {
         const { itens } = get();
@@ -67,11 +84,15 @@ export const useOrcamento = create<OrcamentoStore>()(
 
       limparOrcamento: () => set({ itens: [] }),
 
+      salvarUltimoPedido: (pedido) => set({ ultimoPedido: pedido }),
+
+      limparUltimoPedido: () => set({ ultimoPedido: null }),
+
       totalItens: () => get().itens.reduce((acc, i) => acc + i.quantidade, 0),
     }),
     {
       name: "cantinho-orcamento",
-      partialize: (state) => ({ itens: state.itens }),
+      partialize: (state) => ({ itens: state.itens, ultimoPedido: state.ultimoPedido }),
     }
   )
 );

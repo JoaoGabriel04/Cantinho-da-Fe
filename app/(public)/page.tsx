@@ -118,7 +118,7 @@ export default async function HomePage() {
               Encontre exatamente o que procura
             </p>
           </div>
-          <div className="gsap-stagger grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="gsap-categoria-cards grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {categorias.map((cat) => {
               const Icone = iconesCategorias[cat.slug] ?? iconesCategorias.default;
               return (
@@ -129,7 +129,7 @@ export default async function HomePage() {
                 >
                   <div className="w-16 h-16 rounded-full bg-bege group-hover:bg-ouro-suave/50 flex items-center justify-center overflow-hidden relative">
                     {cat.imagemUrl ? (
-                      <Image src={cat.imagemUrl} alt={cat.nome} fill className="object-cover" />
+                      <Image src={cat.imagemUrl} alt={cat.nome} fill sizes="64px" className="object-cover" />
                     ) : (
                       <Icone className="w-7 h-7 text-ouro group-hover:text-dourado" />
                     )}

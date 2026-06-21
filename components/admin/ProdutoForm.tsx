@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -33,6 +33,10 @@ interface Props {
   produto?: Produto;
 }
 
+type ImagemState =
+  | { tipo: "existente"; url: string }
+  | { tipo: "novo"; file: File; preview: string };
+
 export function ProdutoForm({ categorias, produto }: Props) {
   const router = useRouter();
   const editando = !!produto;
@@ -45,38 +49,43 @@ export function ProdutoForm({ categorias, produto }: Props) {
   const [status, setStatus] = useState<"DISPONIVEL" | "ESGOTADO">(produto?.status ?? "DISPONIVEL");
   const [destaque, setDestaque] = useState(produto?.destaque ?? false);
   const [ativo, setAtivo] = useState(produto?.ativo ?? true);
-  const [imagens, setImagens] = useState<string[]>(produto?.imagens.map((i) => i.url) ?? []);
+  const [imagens, setImagens] = useState<ImagemState[]>(
+    (produto?.imagens.map((i) => ({ tipo: "existente" as const, url: i.url })) ?? [])
+  );
   const [enviandoImagens, setEnviandoImagens] = useState(false);
   const [salvando, setSalvando] = useState(false);
   const [excluindo, setExcluindo] = useState(false);
   const [erro, setErro] = useState("");
 
-  async function handleUploadImagens(e: React.ChangeEvent<HTMLInputElement>) {
-    const arquivos = e.target.files;
-    if (!arquivos?.length) return;
+  // Limpa blob URLs ao desmontar (cancelamento)
+  useEffect(() => {
+    return () => {
+      imagens.forEach((img) => {
+        if (img.tipo === "novo") URL.revokeObjectURL(img.preview);
+      });
+    };
+  }, []);
 
-    setEnviandoImagens(true);
-    const fd = new FormData();
-    Array.from(arquivos).forEach((f) => fd.append("files", f));
+  function handleSelectArquivos(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (!files?.length) return;
 
-    const res = await fetch("/api/upload", { method: "POST", body: fd });
-
-    if (!res.ok) {
-      const msg = await res.text().catch(() => "Erro desconhecido");
-      setErro(`Erro ao fazer upload das imagens (${res.status}): ${msg}`);
-      setEnviandoImagens(false);
-      e.target.value = "";
-      return;
-    }
-
-    const data = await res.json();
-    setImagens((prev) => [...prev, ...data.urls]);
-    setEnviandoImagens(false);
+    const novas = Array.from(files).map((file) => ({
+      tipo: "novo" as const,
+      file,
+      preview: URL.createObjectURL(file),
+    }));
+    setImagens((prev) => [...prev, ...novas]);
     e.target.value = "";
   }
 
-  function removerImagem(url: string) {
-    setImagens((prev) => prev.filter((u) => u !== url));
+  function removerImagem(item: ImagemState) {
+    if (item.tipo === "novo") URL.revokeObjectURL(item.preview);
+    setImagens((prev) => prev.filter((i) => i !== item));
+  }
+
+  function definirComoPrincipal(item: ImagemState) {
+    setImagens((prev) => [item, ...prev.filter((i) => i !== item)]);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -87,36 +96,76 @@ export function ProdutoForm({ categorias, produto }: Props) {
       setErro("Selecione uma categoria.");
       return;
     }
+
     if (imagens.length === 0) {
       setErro("Adicione pelo menos uma imagem.");
       return;
     }
 
     setSalvando(true);
-    const body = { nome, descricao, preco: parseFloat(preco), quantidade, categoriaId, status, destaque, ativo, imagens };
 
-    const res = editando
-      ? await fetch(`/api/produtos/${produto!.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        })
-      : await fetch("/api/produtos", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
+    try {
+      // Sobe as imagens novas para o Cloudinary apenas no momento do submit
+      const novasUrls: string[] = [];
+      const arquivosNovos = imagens.filter(
+        (img): img is { tipo: "novo"; file: File; preview: string } => img.tipo === "novo"
+      );
 
-    setSalvando(false);
+      if (arquivosNovos.length > 0) {
+        setEnviandoImagens(true);
+        const fd = new FormData();
+        arquivosNovos.forEach((n) => fd.append("files", n.file));
 
-    if (!res.ok) {
-      const data = await res.json();
-      setErro(data.error ?? "Erro ao salvar o produto.");
-      return;
+        const res = await fetch("/api/upload", { method: "POST", body: fd });
+        if (!res.ok) throw new Error("Erro ao enviar imagens para o Cloudinary");
+
+        const data = await res.json();
+        novasUrls.push(...data.urls);
+        setEnviandoImagens(false);
+      }
+
+      // Monta array final mantendo a ordem definida pelo usuário
+      let idxUrl = 0;
+      const todasUrls = imagens.map((img) =>
+        img.tipo === "existente" ? img.url : novasUrls[idxUrl++]
+      );
+
+      const body = {
+        nome, descricao, preco: parseFloat(preco),
+        quantidade, categoriaId, status, destaque, ativo,
+        imagens: todasUrls,
+      };
+
+      const res = editando
+        ? await fetch(`/api/produtos/${produto!.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          })
+        : await fetch("/api/produtos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setErro(data.error ?? "Erro ao salvar o produto.");
+        return;
+      }
+
+      // Limpa as blob URLs após salvar com sucesso
+      imagens.forEach((img) => {
+        if (img.tipo === "novo") URL.revokeObjectURL(img.preview);
+      });
+
+      router.push("/admin/produtos");
+      router.refresh();
+    } catch (err) {
+      setErro("Erro ao salvar o produto. Verifique as imagens e tente novamente.");
+    } finally {
+      setSalvando(false);
     }
-
-    router.push("/admin/produtos");
-    router.refresh();
   }
 
   async function handleExcluir() {
@@ -202,11 +251,11 @@ export function ProdutoForm({ categorias, produto }: Props) {
         <h2 className="font-semibold text-texto">Imagens</h2>
 
         <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-8 cursor-pointer hover:border-ouro hover:bg-bege transition-all">
-          <input type="file" multiple accept="image/*" className="hidden" onChange={handleUploadImagens} />
+          <input type="file" multiple accept="image/*" className="hidden" onChange={handleSelectArquivos} />
           {enviandoImagens ? (
             <div className="flex items-center gap-2 text-texto-suave">
               <div className="w-5 h-5 border-2 border-ouro border-t-transparent rounded-full animate-spin" />
-              Enviando imagens...
+              Enviando imagens para o servidor...
             </div>
           ) : (
             <>
@@ -221,19 +270,27 @@ export function ProdutoForm({ categorias, produto }: Props) {
 
         {imagens.length > 0 && (
           <div className="grid grid-cols-3 gap-3">
-            {imagens.map((url, i) => (
-              <div key={url} className="relative aspect-square rounded-xl overflow-hidden group">
-                <Image src={url} alt={`Imagem ${i + 1}`} fill className="object-cover" />
-                <button
-                  type="button"
-                  onClick={() => removerImagem(url)}
-                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
-                >
+            {imagens.map((item, i) => (
+              <div key={item.tipo === "existente" ? item.url : item.preview}
+                className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer"
+                onClick={() => definirComoPrincipal(item)}>
+                {item.tipo === "existente" ? (
+                  <Image src={item.url} alt={`Imagem ${i + 1}`} fill sizes="(max-width: 640px) 33vw, 200px" className="object-cover" />
+                ) : (
+                  <img src={item.preview} alt={`Nova imagem ${i + 1}`} className="w-full h-full object-cover" />
+                )}
+                <button type="button" onClick={(e) => { e.stopPropagation(); removerImagem(item); }}
+                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600">
                   ×
                 </button>
                 {i === 0 && (
                   <span className="absolute bottom-2 left-2 bg-ouro text-white text-xs px-2 py-0.5 rounded-full">
                     Principal
+                  </span>
+                )}
+                {i !== 0 && (
+                  <span className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    Definir como principal
                   </span>
                 )}
               </div>

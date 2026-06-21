@@ -5,7 +5,6 @@ import { useState } from "react";
 import { StatusSelo } from "./StatusSelo";
 import { ProdutoCard } from "./ProdutoCard";
 import { useOrcamento } from "@/store/orcamento";
-import { montarLinkWhatsapp } from "@/lib/whatsapp";
 
 interface Imagem {
   id: string;
@@ -56,10 +55,17 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
   }
 
   function handleComprarDireto() {
-    const link = montarLinkWhatsapp([
-      { codigo: produto.codigo, nome: produto.nome, quantidade },
-    ]);
-    window.open(link, "_blank");
+    adicionarItem(
+      {
+        produtoId: produto.id,
+        codigo: produto.codigo,
+        nome: produto.nome,
+        preco: produto.preco,
+        imagemUrl: imagens[0]?.url ?? "",
+      },
+      quantidade
+    );
+    useOrcamento.getState().abrirDrawer(true);
   }
 
   return (
@@ -97,7 +103,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
                       : "border-transparent hover:border-ouro/40"
                   }`}
                 >
-                  <Image src={img.url} alt={`Imagem ${i + 1}`} fill className="object-cover" />
+                  <Image src={img.url} alt={`Imagem ${i + 1}`} fill sizes="80px" className="object-cover" />
                 </button>
               ))}
             </div>

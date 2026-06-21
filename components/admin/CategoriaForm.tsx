@@ -112,7 +112,7 @@ export function CategoriaForm({ categoria }: Props) {
 
           {imagemUrl ? (
             <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-3">
-              <Image src={imagemUrl} alt="Capa" fill className="object-cover" />
+              <Image src={imagemUrl} alt="Capa" fill sizes="(max-width: 640px) 100vw, 600px" className="object-cover" />
               <button
                 type="button"
                 onClick={() => setImagemUrl("")}
