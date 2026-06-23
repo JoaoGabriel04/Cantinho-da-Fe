@@ -69,7 +69,7 @@ export default async function CatalogoPage({
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Filtros */}
         <aside className="lg:w-64 shrink-0">
-          <div className="bg-white rounded-2xl p-5 border border-ouro/10 shadow-sm sticky top-24">
+          <div className="bg-white rounded-xl p-5 border border-ouro/10 shadow-sm sticky top-24">
             <h2 className="font-semibold text-texto mb-4">Filtros</h2>
 
             {/* Busca */}

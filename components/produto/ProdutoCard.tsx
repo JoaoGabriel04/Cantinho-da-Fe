@@ -44,7 +44,7 @@ export function ProdutoCard({ produto }: Props) {
 
   return (
     <Link href={`/produtos/${produto.slug}`} className="group block">
-      <div className={`bg-white rounded-2xl overflow-hidden shadow-sm hover-lift border border-ouro/10 ${!disponivel ? "opacity-70" : ""}`}>
+      <div className={`bg-white rounded-xl overflow-hidden shadow-sm hover-lift border border-ouro/10 ${!disponivel ? "opacity-70" : ""}`}>
         {/* Imagem */}
         <div className="relative aspect-square bg-bege overflow-hidden">
           {imagemPrincipal ? (

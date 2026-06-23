@@ -5,7 +5,7 @@ import Image from "next/image";
 import { X, Trash2, Minus, Plus, MessageCircle, ShoppingBag, ArrowLeft, Check } from "lucide-react";
 import { useOrcamento } from "@/store/orcamento";
 
-const CHAVE_PIX = "jgabrielcastro04@gmail.com";
+const CHAVE_PIX = process.env.NEXT_PUBLIC_PIX_CHAVE ?? "";
 
 export function DrawerOrcamento() {
   const {
@@ -197,7 +197,7 @@ export function DrawerOrcamento() {
                           )}`;
                           window.open(link, "_blank");
                         }}
-                        className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-medium transition-colors"
+                        className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-full font-medium transition-colors"
                       >
                         <MessageCircle className="w-5 h-5" />
                         Falar no WhatsApp
@@ -368,7 +368,7 @@ export function DrawerOrcamento() {
             </div>
             <button
               onClick={abrirCheckout}
-              className="w-full flex items-center justify-center gap-2 bg-ouro hover:bg-terroso text-white py-3 rounded-xl font-medium transition-colors"
+              className="w-full flex items-center justify-center gap-2 bg-ouro hover:bg-terroso text-white py-3 rounded-full font-medium transition-colors"
             >
               <ShoppingBag className="w-5 h-5" />
               Finalizar Pedido
@@ -387,7 +387,7 @@ export function DrawerOrcamento() {
             <button
               onClick={handleFinalizar}
               disabled={carregando}
-              className="w-full flex items-center justify-center gap-2 bg-ouro hover:bg-terroso text-white py-3 rounded-xl font-medium transition-colors disabled:opacity-60"
+              className="w-full flex items-center justify-center gap-2 bg-ouro hover:bg-terroso text-white py-3 rounded-full font-medium transition-colors disabled:opacity-60"
             >
               {carregando ? (
                 <>
@@ -408,7 +408,7 @@ export function DrawerOrcamento() {
           <div className="px-5 py-4 border-t border-dourado/30 shrink-0 space-y-3">
             <button
               onClick={abrirWhatsAppConfirmacao}
-              className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-medium transition-colors"
+              className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-full font-medium transition-colors"
             >
               <MessageCircle className="w-5 h-5" />
               Falar no WhatsApp

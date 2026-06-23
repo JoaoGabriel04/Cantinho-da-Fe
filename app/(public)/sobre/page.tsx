@@ -23,7 +23,7 @@ export default function SobrePage() {
       </div>
 
       <div className="prose prose-lg max-w-none">
-        <div className="gsap-slide-left bg-white rounded-2xl p-8 md:p-12 border border-ouro/10 shadow-sm mb-8">
+        <div className="gsap-slide-left bg-white rounded-xl p-8 md:p-12 border border-ouro/10 shadow-sm mb-8">
           <h2 className="font-serif text-2xl text-texto mb-4">Nossa missão</h2>
           <p className="text-texto-suave leading-relaxed mb-4">
             O Cantinho da Fé nasceu da vontade de oferecer artigos religiosos de qualidade com um atendimento diferenciado, humano e carinhoso. Acreditamos que cada produto que vendemos carrega um significado especial e merece ser escolhido com cuidado.
@@ -52,9 +52,16 @@ export default function SobrePage() {
           ))}
         </div>
 
-        <div className="gsap-scale-up bg-texto text-white rounded-2xl p-8 md:p-12 text-center">
+        <div className="gsap-scale-up bg-texto text-white rounded-xl p-8 md:p-12 text-center">
           <h2 className="font-serif text-2xl text-ouro-suave mb-4">Fale conosco</h2>
           <div className="space-y-3 text-white/80 mb-8">
+            <div className="flex items-start justify-center gap-2">
+              <svg className="w-5 h-5 text-ouro-suave shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <p>Rua Vicente Santana, 117 — Centro<br />Grajaú, MA</p>
+            </div>
             <p><strong className="text-white">Horário de atendimento</strong></p>
             <p>Segunda a Sexta: 8h às 18h</p>
             <p>Sábado: 8h às 13h</p>

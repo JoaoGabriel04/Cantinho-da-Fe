@@ -73,7 +73,7 @@ export function ProdutoDetalhes({ produto, relacionados }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Galeria */}
         <div className="gsap-slide-left">
-          <div className="relative aspect-square bg-bege rounded-2xl overflow-hidden mb-4">
+          <div className="relative aspect-square bg-bege rounded-xl overflow-hidden mb-4">
             {imagens[imagemAtiva] ? (
               <Image
                 src={imagens[imagemAtiva].url}

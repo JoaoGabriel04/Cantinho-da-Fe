@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Design reference (cloned externally, not part of this repo)
+/awesome-design-md
+
 # dependencies
 /node_modules
 /.pnp

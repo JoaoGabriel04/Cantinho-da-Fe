@@ -125,7 +125,7 @@ export default async function HomePage() {
                 <Link
                   key={cat.id}
                   href={`/produtos?categoria=${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl border border-ouro/20 hover:border-dourado/60 hover:shadow-md hover:shadow-dourado/10 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:translate-x-1 hover:-rotate-1"
+                  className="group flex flex-col items-center gap-3 p-5 bg-white rounded-xl border border-ouro/20 hover:border-dourado/60 hover:shadow-md hover:shadow-dourado/10 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:translate-x-1 hover:-rotate-1"
                 >
                   <div className="w-16 h-16 rounded-full bg-bege group-hover:bg-ouro-suave/50 flex items-center justify-center overflow-hidden relative">
                     {cat.imagemUrl ? (
@@ -193,7 +193,7 @@ export default async function HomePage() {
           <div className="gsap-stagger grid grid-cols-1 md:grid-cols-3 gap-8">
             {passos.map((passo) => (
               <div key={passo.num} className="flex flex-col items-center gap-4 p-6">
-                <div className="w-16 h-16 rounded-full bg-linear-to-br from-ouro to-terroso flex items-center justify-center text-white font-serif text-2xl font-bold shadow-lg">
+                <div className="w-16 h-16 rounded-full bg-ouro flex items-center justify-center text-white font-serif text-2xl font-bold">
                   {passo.num}
                 </div>
                 <div className="w-12 h-12 rounded-full bg-bege flex items-center justify-center">

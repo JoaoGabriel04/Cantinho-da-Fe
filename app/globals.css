@@ -43,13 +43,19 @@ body {
   background-color: var(--color-creme);
   color: var(--color-texto);
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.47;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3,
-h4,
+h4 {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
 h5,
 h6 {
   font-family: var(--font-serif), Georgia, serif;
